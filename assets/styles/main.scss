@@ -1,0 +1,67 @@
+@font-face {
+    font-family: "Janna-lt";
+    src:
+        url("/assets/fonts/Janna-lt.ttf") format("truetype"),
+        url("/assets/fonts/Janna-lt-Bold.ttf");
+    font-weight: bolder;
+    font-display: swap;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Janna-lt", sans-serif;
+}
+
+body,
+html {
+    overflow-x: clip;
+}
+
+body {
+    font-family: "Janna-lt", sans-serif;
+    height: 2000px;
+}
+
+
+// start navbar 
+
+.navbar-container{
+    .links{
+          .router-link-exact-active {
+              color: black;
+              font-weight: bold;
+              position: relative;
+              transition: 0.4s;
+              &::before {
+                content: "";
+                width: 25px;
+                height: 2px;
+                background-color: #1b395f;
+                position: absolute;
+                top: 100%;
+              }
+            }
+        a{
+          position: relative;
+          &:hover{
+            color: black;
+          }
+            &::before {
+                content: "";
+                width: 0%;
+                height: 2px;
+                background-color: #1b395f;
+                position: absolute;
+                top: 100%;
+                transition: 0.4s;
+              }
+              &:hover::before {
+                width: 30px;
+              }
+        }
+      }
+}
+
+// end navbar 
