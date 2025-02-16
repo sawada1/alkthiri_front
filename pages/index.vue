@@ -5,6 +5,10 @@
         </div>
 
         <HomeSearch></HomeSearch>
+        <HomeTypes></HomeTypes>
+        <HomeAbout></HomeAbout>
+        <HomeWhy></HomeWhy>
+        <HomeBrands></HomeBrands>
     </div>
 </template>
 <script setup>

@@ -21,7 +21,7 @@ html {
 
 body {
     font-family: "Janna-lt", sans-serif;
-    height: 2000px;
+    min-height: 2000px;
 }
 
 
@@ -65,3 +65,61 @@ body {
 }
 
 // end navbar 
+
+@mixin textAnimated($text, $size, $top, $right, $color) {
+  content: attr($text);
+  font-size: $size;
+  font-weight: bolder;
+  color: transparent;
+  text-transform: uppercase;
+  opacity: 0.2;
+  position: absolute;
+  width: 100%;
+  top: $top;
+  right: $right;
+  -webkit-text-stroke: 1px $color;
+}
+
+
+html[dir="ltr"]{
+  .headText{
+  position: relative;
+    &.about{
+      &::before{
+        @include textAnimated(data-about, 70px, -30%, 00px, #fff);
+      }
+    }
+    &.why{
+      &::before{
+        @include textAnimated(data-why, 60px, -30%, 00px, #1b395f);
+      }
+    }
+    &.brands{
+      &::before{
+        @include textAnimated(data-brands, 60px, -30%, 00px, #1b395f);
+      }
+    }
+  }
+}
+
+@media(max-width: 760px){
+  html[dir="ltr"]{
+    .headText{
+      &.about{
+        &::before{
+          @include textAnimated(data-about, 50px, -30%, 00px, #fff);
+        }
+      }
+      &.why{
+        &::before{
+          @include textAnimated(data-why, 40px, -80%, 00px, #1b395f);
+        }
+      }
+      &.brands{
+        &::before{
+          @include textAnimated(data-brands, 40px, -80%, 00px, #1b395f);
+        }
+      }
+    }
+  }
+}
