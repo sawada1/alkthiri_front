@@ -9,6 +9,9 @@
         <HomeAbout></HomeAbout>
         <HomeWhy></HomeWhy>
         <HomeBrands></HomeBrands>
+        <HomeLatestCars></HomeLatestCars>
+        <HomeNews></HomeNews>
+        <HomeSubscribe></HomeSubscribe>
     </div>
 </template>
 <script setup>

@@ -24,4 +24,6 @@
   --color-primary-900: 27 57 95;
   --color-primary-950: 18 36 63;
 }
+
+
 </style>

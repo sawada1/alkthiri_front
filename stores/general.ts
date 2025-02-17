@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
-export const GeneralStore = defineStore("generalStore", () => {
-  
+export const useGeneralStore = defineStore("generalStore", () => {
+     let generalData = ref();
     return {
-   
+        generalData
     };
 },
 

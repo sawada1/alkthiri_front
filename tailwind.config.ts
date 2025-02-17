@@ -16,9 +16,9 @@ export default <Partial<Config>>{
       padding: {
         DEFAULT: "1rem",
         sm: "1rem",
-        lg: "4rem",
-        xl: "5rem",
-        "2xl": "10.188rem",
+        lg: "3rem",
+        xl: "4rem",
+        "2xl": "7rem",
         // "3xl": "10rem",
       },
 
