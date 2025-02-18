@@ -1,16 +1,16 @@
 <template>
   <div class="min-height-screen">
    
-    <HomeSlider />
-    <HomeSearch />
-    <HomeTypes />
-    <HomeAbout />
-    <HomeWhy />
-    <HomeBrands />
-    <HomeLatestCars />
-    <HomeNews />
-    <!-- <lazy-HomeSubscribe /> -->
-    <HomeSubscribe />
+    <lazy-HomeSlider />
+    <lazy-HomeSearch />
+    <lazy-HomeTypes />
+    <lazy-HomeAbout />
+    <lazy-HomeWhy />
+    <lazy-HomeBrands />
+    <lazy-HomeLatestCars />
+    <lazy-HomeNews />
+    <lazy-HomeSubscribe />
+    <lazy-HomeSubscribe />
 
     <!-- page loader  -->
     <!-- <loader v-if="checkLoader"></loader> -->
