@@ -10,24 +10,26 @@
         <div class="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 gap-10">
             <div class="box bg-white shadow-shadow1 flex flex-col py-10 px-3 text-center items-center gap-3 rounded-xl">
                 <NuxtImg src="/images/box1.svg" loading="lazy"></NuxtImg>
-                <span class="text-primary text-[18px] font-semibold"> سعرنا هو الأفضل </span>
+                <USkeleton v-if="store.pendingGeneral" class="h-5 w-full" /> 
+                <p v-else class="text-primary text-[18px] font-semibold" v-html="store.generalData?.why_alkathiri_cars_card_1"></p>
             </div>
             <div class="box bg-white shadow-shadow1 flex flex-col py-10 px-3 text-center items-center gap-3 rounded-xl">
                 <NuxtImg src="/images/box2.svg" loading="lazy"></NuxtImg>
-                <span class="text-primary text-[18px] font-semibold"> سعرنا هو الأفضل </span>
+                <USkeleton v-if="store.pendingGeneral" class="h-5 w-full" />
+                <p v-else class="text-primary text-[18px] font-semibold" v-html="store.generalData?.why_alkathiri_cars_card_2"></p>
             </div>
             <div class="box bg-white shadow-shadow1 flex flex-col py-10 px-3 text-center items-center gap-3 rounded-xl">
                 <NuxtImg src="/images/box3.svg" loading="lazy"></NuxtImg>
-                <span class="text-primary text-[18px] font-semibold"> سعرنا هو الأفضل </span>
+                <USkeleton v-if="store.pendingGeneral" class="h-5 w-full" />
+                <p v-else class="text-primary text-[18px] font-semibold" v-html="store.generalData?.why_alkathiri_cars_card_3"></p>
             </div>
         </div>
     </div>
     </div>
 </template>
-<script>
-export default {
-    
-}
+<script setup>
+import { useGeneralStore } from "~/stores/general";
+let store = useGeneralStore();
 </script>
 <style lang="">
     

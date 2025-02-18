@@ -4,10 +4,9 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
- onMounted(() => {
-  console.log(getComputedStyle(document.documentElement).getPropertyValue('--color-primary-500'));
-  
- })
+ import {useGeneralStore} from '@/stores/general';
+ let store = useGeneralStore();
+ store.fetchGeneral();
 </script>
 
 <style>

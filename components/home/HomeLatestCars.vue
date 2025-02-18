@@ -24,15 +24,16 @@
       </div>
       <ClientOnly>
         <swiper-container ref="containerRef">
-          <swiper-slide v-for="(slide, idx) in slides" :key="idx">
+          <swiper-slide v-for="(slide, idx) in storeHome.latestArray" :key="idx">
             <div class="flex flex-col gap-4 items-center">
               <NuxtImg
-                src="https://admin.alkathirimotors.com.sa/storage/Images/Cars/webstdy_17333448582.png"
+                :src="slide.main_image"
+                placeholder="/images/placeholder.png"
                 class="w-full h-[200px] object-cover"
                 loading="lazy"
               ></NuxtImg>
               <span class="text-[16px] text-primary font-semibold">
-                فورد تيريتوري أمبيانتي 2025
+                {{ slide.name }}
               </span>
             </div>
           </swiper-slide>
@@ -49,7 +50,8 @@
 <script setup>
 const router = useRouter();
 const localePath = useLocalePath();
-
+import { useHomeStore } from "~/stores/home";
+let storeHome = useHomeStore();
 const containerRef = ref(null);
 const slides = ref(Array.from({ length: 10 }));
 

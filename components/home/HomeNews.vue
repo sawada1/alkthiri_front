@@ -9,20 +9,20 @@
     <ClientOnly>
       <swiper-container class="newsSwiper" ref="containerRef2">
         <swiper-slide
-        v-for="i in 6"
+        v-for="item in storeHome.newsArray"
         class="bg-white shadow-shadow1 p-[12px] rounded-[16px]">
-        <NuxtImg src="https://swiperjs.com/demos/images/nature-1.jpg" class="xl:h-[302px] lg:h-[302px] h-[200px] object-cover w-full rounded-[8px]"></NuxtImg>
-        <h5 class="text-primary font-bold text-[25px] my-2"> title one </h5>
-        <p class="text-[#6F6F6E] line-clamp-3 text-[14px]"> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem. </p>
+        <NuxtImg :src="item.main_image" placeholder="/images/placeholder.png" class="xl:h-[302px] lg:h-[302px] h-[200px] object-contain w-full rounded-[8px]"></NuxtImg>
+        <h5 class="text-primary font-bold text-[25px] my-2"> {{ item.title }} </h5>
+        <p class="text-[#6F6F6E] line-clamp-3 text-[14px]" v-html="item.description"></p>
         <div class="flex items-center justify-between px-2 mt-2">
          <div class="flex items-center gap-2">
           <div class="flex items-center gap-1">
            <NuxtImg src="/images/icons/tag.svg" class="w-3 h-3"></NuxtImg>
-           <span class="text-[#C0C0C0] text-[10px]"> Tag name </span>
+           <span class="text-[#C0C0C0] text-[10px]"> {{ item.tags }} </span>
           </div>
           <div class="flex items-center gap-1">
            <NuxtImg src="/images/icons/time.svg" class="w-3 h-3"></NuxtImg>
-           <span class="text-[#C0C0C0] text-[10px]"> 2 days ago </span>
+           <span class="text-[#C0C0C0] text-[10px]"> {{ item.created_at }} </span>
           </div>
          </div>
          <button class="flex items-center gap-1"> 
@@ -38,7 +38,29 @@
 <script setup>
 const containerRef2 = ref(null);
 const slides = ref(Array.from({ length: 10 }));
+import { useHomeStore } from "~/stores/home";
+let storeHome = useHomeStore();
+const router = useRouter();
+const {locale } = useI18n();
+const localePath = useLocalePath();
+const goToNewsPage = (name, id) => {
+  const queryParams = {
+    name: name,
+    id: id,
+  };
 
+  const url = "/new";
+
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+};
 const swiper = useSwiper(containerRef2, {
 //   grabCursor: true,
   centeredSlides: true,

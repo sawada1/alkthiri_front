@@ -1,54 +1,54 @@
 // stores/exampleStore.ts
 import { defineStore } from 'pinia';
 import { useApi } from '@/composables/api';
-interface Brand {
-    id: number;
-    name: string;
-    image: string;
-    cars_count: number
-  }
-  
-  interface ApiResponse<T> {
-    data: T;
-  }
-  interface bankPartner{
-    logo: string;
-    name: string;
-    id: number;
-  }
+import { ApiResponse } from "@/types/general";
+import { Brands , Latest , News } from "@/types/home";
 
-export const useHomeStore = defineStore('home', {
-  state: () => ({
-    loading: false,
-    test:'sasas',
-    brands:[] as Brand[],
-    banksPartner: [] as bankPartner[],
-    error: null,
-  }),
-  actions: {
-    async fetchBrands() {
-      this.loading = true;
-      this.error = null;
-      try {
-        let result = await useApi().get<ApiResponse<Brand[]>>('brands');
-        this.brands = result.data.data;
-      } catch (error: any) {
-        this.error = error.message || 'An error occurred while fetching items.';
-      } finally {
-        this.loading = false;
-      }
-    },
-    async fetchBanksPartner() {
-      this.loading = true;
-      this.error = null;
-      try {
-        let result = await useApi().get<ApiResponse<bankPartner[]>>('banks');
-        this.banksPartner = result.data.data;
-      } catch (error: any) {
-        this.error = error.message || 'An error occurred while fetching items.';
-      } finally {
-        this.loading = false;
-      }
-    },
-  },
-});
+  export const useHomeStore = defineStore('home', {
+      state: () => ({
+        brandArray:[] as Brands[],
+        latestArray:[] as Latest[],
+        newsArray:[] as News[],
+        spinner_brands:false,
+        spinner_latest:false,
+      }),
+      getters: {
+     
+      },
+      actions: {
+        async fetchBrands() {
+          this.spinner_brands = true;
+          try {
+            let result = await  useApi().get<ApiResponse<Brands[]>>('brands');
+            if(result.status == 200){
+              this.spinner_brands = false;
+              this.brandArray = result.data.data;
+            }
+          } catch (error) {
+          } finally {
+          }
+        },
+        async fetchNews() {
+          try {
+            let result = await useApi().get<ApiResponse<News[]>>('news/highlighted');
+            if(result.status == 200){
+              this.newsArray = result.data.data;
+            }
+          } catch (error) {
+          } finally {
+          }
+        },
+        async fetchCars() {
+          this.spinner_latest = true;
+          try {
+            let result = await useApi().get<ApiResponse<Latest[]>>('cars/latest');
+            if(result.status == 200){
+              this.spinner_latest = false;
+              this.latestArray = result.data.data;
+            }
+          } catch (error) {
+          } finally {
+          }
+        },
+      },
+    })
