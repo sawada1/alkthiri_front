@@ -9,7 +9,7 @@ export default <Partial<Config>>{
     "./plugins/**/*.{js,ts}",
     "./app.vue",
     "./error.vue",
-    "./nuxt.config.ts",
+    // "./nuxt.config.ts",
     "./node_modules/@nuxt/ui/dist/**/*.mjs", // Ensure Nuxt UI components are included
   ],
   theme: {
