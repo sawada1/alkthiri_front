@@ -10,7 +10,6 @@
     <lazy-HomeLatestCars />
     <lazy-HomeNews />
     <lazy-HomeSubscribe />
-    <lazy-HomeSubscribe />
 
     <!-- page loader  -->
     <!-- <loader v-if="checkLoader"></loader> -->
