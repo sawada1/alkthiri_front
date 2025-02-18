@@ -15,7 +15,7 @@
                   v-html="store.generalData?.why_alkathiri_cars"
                 ></p>
                   <div class="flex justify-center xl:justify-start lg:justify-start mt-10">
-                    <button class="bg-primary border-[1px] flex items-center gap-2 px-10 py-2 text-white font-bold border-white rounded-lg">
+                    <button id="readMoreNews" aria-label="read more" class="bg-primary border-[1px] flex items-center gap-2 px-10 py-2 text-white font-bold border-white rounded-lg">
                         {{ $t("read more") }}
                         <Icon name="tabler:arrow-left" class="bg-white w-[30px] h-[30px] ltr:scale-x-[-1]" width="24" height="24" />
                     </button>

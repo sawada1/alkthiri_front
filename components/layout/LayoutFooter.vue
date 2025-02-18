@@ -88,6 +88,7 @@
             </div>
             <div class="flex items-center gap-5">
               <a
+              v-if="store.generalData?.facebook_url"
                 target="_blank"
                 class="iconHref"
                 aria-label="iconHref"
@@ -101,6 +102,7 @@
                 ></NuxtImg>
               </a>
               <a
+              v-if="store.generalData?.snapchat"
                 target="_blank"
                 class="iconHref"
                 aria-label="iconHref"
@@ -109,6 +111,7 @@
                 <SvgSnap></SvgSnap>
               </a>
               <a
+              v-if="store.generalData?.instagram_url"
                 target="_blank"
                 class="iconHref"
                 aria-label="iconHref"
@@ -122,6 +125,7 @@
                 ></NuxtImg>
               </a>
               <a
+              v-if="store.generalData?.twitter_url"
                 target="_blank"
                 class="iconHref"
                 aria-label="iconHref"
@@ -142,6 +146,7 @@
             </div>
             <nuxt-link :to="localePath('/maintenance')" class="mt-2">
               <button
+              id="maintenance3" aria-label="search"
                 class="bg-white px-8 py-3 rounded-[8px] font-bold mt-5 text-primary"
               >
                 <span class="">{{ $t("book For Maintenance") }}</span>
@@ -167,7 +172,7 @@
         </p>
       </div>
     </div>
-    <button @click="scrollUp()" class="w-[40px] absolute bottom-5 right-10 h-[40px] flex items-center justify-center rounded-lg border-[1px] border-white">
+    <button id="upBtnn" aria-label="upBtn" @click="scrollUp()" class="w-[40px] absolute bottom-5 right-10 h-[40px] flex items-center justify-center rounded-lg border-[1px] border-white">
         <Icon name="meteor-icons:arrow-up" class="bg-white w-[27px] h-[27px]" width="24" height="24" />
     </button>
   </div>

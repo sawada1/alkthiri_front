@@ -51,6 +51,7 @@
       </USelectMenu>
 
       <button
+      id="seachBtnContainer" aria-label="search"
         class="bg-tw-primary rounded-xl text-white font-bold xl:w-[120px] lg:w-[120px] md:w-[120px] w-full h-[40px] shadow-shadow2"
       >
         {{ $t("search") }}

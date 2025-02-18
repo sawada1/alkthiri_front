@@ -8,7 +8,7 @@
           {{ $t("Maintenance Appointment") }} <br />
           {{ $t("now") }}
         </h2>
-        <button class="bg-white text-primary rounded-xl font-bold w-fit px-8 py-2">
+        <button id="bookNow2" aria-label="book" class="bg-white text-primary rounded-xl font-bold w-fit px-8 py-2">
             {{ $t("book now") }}
         </button>
          </div>

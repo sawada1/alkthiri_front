@@ -40,9 +40,9 @@
           </swiper-slide>
         </swiper-container>
       </ClientOnly>
-      <button @click="swiper.prev()" class="absolute top-[50%] left-5 hidden xl:block lg:block">
+      <button @click="swiper.next()" id="swiperBtn1" aria-label="swiper" class="absolute top-[50%] left-5 hidden xl:block lg:block">
         <svg xmlns="http://www.w3.org/2000/svg" height="40px" width="40px" viewBox="0 -960 960 960"  fill="#1b395f"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>      </button>
-      <button @click="swiper.next()" class="absolute top-[50%] right-5 hidden xl:block lg:block">
+      <button @click="swiper.prev()" id="swiperBtn2" aria-label="swiper" class="absolute top-[50%] right-5 hidden xl:block lg:block">
         <svg xmlns="http://www.w3.org/2000/svg" height="40px" width="40px" viewBox="0 -960 960 960"  fill="#1b395f"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>
       </button>
     </div>

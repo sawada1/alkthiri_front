@@ -11,6 +11,7 @@
     </div>
     <div v-else>
       <iframe
+        id="sliderIframe"
         src="https://admin.alkathirimotors.com.sa/slide/alkathiri_ar"
         class="w-full xl:h-[80vh] lg:h-[80vh] h-screen"
         frameborder="0"

@@ -1,8 +1,8 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
-  // "module": "esnext",
-  // "moduleResolution": "bundler",
+  "module": "esnext",
+  "moduleResolution": "bundler",
   "compilerOptions": {
     "verbatimModuleSyntax": false
   }
