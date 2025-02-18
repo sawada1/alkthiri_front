@@ -2,7 +2,7 @@
     <div class="bg-white shadow-shadow1 py-7">
         <div class="container navbar-container flex items-center justify-between">
             <div class="flex items-center gap-10">
-                <NuxtImg src="/images/logo.svg" width="140" />
+                <NuxtImg src="/images/logo.svg" width="140" alt="logo" loading="lazy"/>
                 <div class="links xl:flex lg:flex hidden  items-center gap-4">
                     <div class="nav-item">
                         <nuxt-link :to="localePath('/')" class="nav-link relative text-tw-grey" >{{ $t("home")
@@ -46,20 +46,20 @@
                 <div class="flex items-center gap-5">
                     <div>
                         <nuxt-link v-if="locale == 'en'" :to="switchLocalePath('ar')">
-                           <NuxtImg src="/images/ar.svg" width="30" /> 
+                           <NuxtImg src="/images/ar.svg" alt="ar" loading="lazy" width="30" /> 
                         </nuxt-link>
                         <nuxt-link v-if="locale == 'ar'" :to="switchLocalePath('en')">
-                           <NuxtImg src="/images/en.svg" width="30" /> 
+                           <NuxtImg src="/images/en.svg" alt="en" loading="lazy" width="30" /> 
            
                         </nuxt-link>
                     </div>
-                    <button>
+                    <button id="searchLabelIcon3" aria-label="search">
                     <SvgSearch></SvgSearch>
                     </button>
                 </div>
-                <button class="bg-tw-primary text-white rounded-lg px-4 py-2 shadow-shadow2"> {{ $t("book For Maintenance") }} </button>
+                <button id="bookButton" class="bg-tw-primary text-white rounded-lg px-4 py-2 shadow-shadow2"> {{ $t("book For Maintenance") }} </button>
             </div>
-            <button @click="isOpen = true" class="xl:hidden lg:hidden block">
+            <button id="toggleLabelIcon" aria-label="toggle" @click="isOpen = true" class="xl:hidden lg:hidden block">
                 <Icon name="flowbite:align-left-outline" color="" class="bg-tw-primary w-[35px] h-[35px]" width="40" height="40" />
             </button>
         </div>
@@ -118,18 +118,18 @@
                 <div class="flex items-center gap-5">
                     <div>
                         <nuxt-link v-if="locale == 'en'" :to="switchLocalePath('ar')">
-                           <NuxtImg src="/images/ar.svg" width="30" /> 
+                           <NuxtImg src="/images/ar.svg" alt="ar" width="30" loading="lazy" /> 
                         </nuxt-link>
                         <nuxt-link v-if="locale == 'ar'" :to="switchLocalePath('en')">
-                           <NuxtImg src="/images/en.svg" width="30" /> 
+                           <NuxtImg src="/images/en.svg" alt="en" width="30" loading="lazy" /> 
            
                         </nuxt-link>
                     </div>
-                    <button>
+                    <button id="searchLabelIcon2" aria-label="search">
                     <SvgSearch></SvgSearch>
                     </button>
                 </div>
-                <button class="bg-tw-primary text-white rounded-lg px-4 py-2 shadow-shadow2"> {{ $t("book For Maintenance") }} </button>
+                <button id="bookLabel2" aria-label="book" class="bg-tw-primary text-white rounded-lg px-4 py-2 shadow-shadow2"> {{ $t("book For Maintenance") }} </button>
             </div>
         <Placeholder class="h-full" />
       </div>

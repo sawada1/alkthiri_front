@@ -6,6 +6,22 @@ export default defineNuxtConfig({
   tailwindcss: {
     configPath: 'tailwind.config.ts',
   },
+  nitro: {
+    minify: true,
+    routeRules: {
+      // Cache static assets for 1 year
+      '/_nuxt/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
+
+      // Cache images for 1 month
+      '/images/**': { headers: { 'Cache-Control': 'public, max-age=2592000, stale-while-revalidate=86400' } },
+
+      // Cache API responses for 5 minutes
+      '/api/**': { headers: { 'Cache-Control': 'public, max-age=300, stale-while-revalidate=60' } }
+    }
+  },
+  colorMode: {
+    preference: 'light'
+  },
   image: {
     provider: "none",
     format: ['webp'],

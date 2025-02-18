@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-[100px] mb-[100px]">
+  <div class="xl:mt-[100px] lg:mt-[100px] mt-[70px] mb-[0px]">
     <div class="relative container">
       <div class="head flex items-center justify-between mb-10">
         <h4
@@ -30,6 +30,7 @@
                 :src="slide.main_image"
                 placeholder="/images/placeholder.png"
                 class="w-full h-[200px] object-cover"
+                :alt="slide.name"
                 loading="lazy"
               ></NuxtImg>
               <span class="text-[16px] text-primary font-semibold">

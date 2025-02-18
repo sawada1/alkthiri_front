@@ -8,6 +8,7 @@
           <NuxtImg
             src="/images/footer2.png"
             class="xl:w-[272px] lg:w-[272px] xl:h-[78px] lg:h-[78px] w-[200px] h-[57px]"
+            alt="logo"
             loading="lazy"
           ></NuxtImg>
         </div>
@@ -94,6 +95,8 @@
               >
                 <NuxtImg
                   src="/images/icons/facebook.svg"
+                  alt="facebook"
+                  loading="lazy"
                   class="w-6 h-6"
                 ></NuxtImg>
               </a>
@@ -113,6 +116,8 @@
               >
                 <NuxtImg
                   src="/images/icons/instagram.svg"
+                  alt="instagram"
+                  loading="lazy"
                   class="w-6 h-6"
                 ></NuxtImg>
               </a>
@@ -157,7 +162,7 @@
             target="_blank"
             href="https://webstdy.com/ar?utm_source=alkathiri-foorter&utm_medium=referral"
           >
-            <img src="/images/logo-footer.svg" alt="webstdy" />
+            <NuxtImg src="/images/logo-footer.svg" loading="lazy" alt="webstdy" />
           </a>
         </p>
       </div>

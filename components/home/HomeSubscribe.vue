@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-[100px] mb-[100px]">
+    <div class="xl:mt-[100px] lg:mt-[100px] mt-[70px] xl:mb-[100px] lg:mb-[100px] mb-[70px]">
         <div class="container">
          <div class="relative w-full p-8  bg-primary rounded-[20px]">
          <div class="flex flex-col items-center text-center gap-3 xl:w-fit lg:w-fit w-full">
@@ -12,8 +12,8 @@
             {{ $t("book now") }}
         </button>
          </div>
-         <NuxtImg class="absolute top-[0%] w-full left-0 rtl:scale-x-[-1] hidden xl:block lg:block" src="/images/sub.png"></NuxtImg>
-         <NuxtImg class="absolute top-[-50%] w-[720px] h-[375px]  rtl:left-0 ltr:right-0 ltr:scale-x-[-1] hidden xl:block lg:block" src="/images/sub2ar.png"></NuxtImg>
+         <NuxtImg class="absolute top-[0%] w-full left-0 rtl:scale-x-[-1] hidden xl:block lg:block" loading="lazy" src="/images/sub.png" alt="sub1"></NuxtImg>
+         <NuxtImg class="absolute top-[-50%] w-[720px] h-[375px]  rtl:left-0 ltr:right-0 ltr:scale-x-[-1] hidden xl:block lg:block" loading="lazy" alt="sub2" src="/images/sub2ar.png"></NuxtImg>
          </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ export const useGeneralStore = defineStore('general', () => {
         pendingGeneral.value = true;
         generalSpinner.value = true;
         try {
-            let result = await useApi().get('general');
+            let result = await useApi().get('general');            
             if(result.status == 200){
                 generalData.value = result?.data;
                 brandsWithModles.value = generalData.value?.brands_with_models;

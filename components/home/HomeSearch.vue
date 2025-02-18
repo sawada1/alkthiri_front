@@ -1,5 +1,5 @@
 <template>
-  <div class="container xl:mt-[100px] lg:mt-[100px] mt-[70px]">
+  <div class="container xl:mt-[100px] lg:mt-[100px] mt-[0px]">
     <div
       class="bg-white px-[16px] py-[24px] rounded-[16px] flex xl:flex-row lg:flex-row md:flex-row flex-col items-center gap-5 justify-between shadow-shadow1"
     >

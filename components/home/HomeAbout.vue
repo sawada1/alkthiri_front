@@ -1,8 +1,8 @@
 <template>
-    <div class="bg-primary w-full  py-[100px] mt-[100px]">
+    <div class="bg-primary w-full  xl:py-[100px] lg:py-[100px] py-[50px] xl:mt-[100px] lg:mt-[100px] mt-[70px]">
         <div class="container">
             <div class="flex  items-center xl:text-start lg:text-start text-center flex-col xl:justify-start lg:justify-start justify-center xl:flex-row lg:flex-row  gap-[60px]">
-                <NuxtImg src="/images/about.png"  loading="lazy" width="300"  class=" xl:w-[400px] lg:w-[400px] w-[300px] object-cover rtl:scale-x-[-1]"></NuxtImg>
+                <NuxtImg src="/images/about.png"  loading="lazy" width="300" alt="about image"  class=" xl:w-[400px] lg:w-[400px] w-[300px] object-cover rtl:scale-x-[-1]"></NuxtImg>
                 <div class="">
                     <p class="text-white text-[18px] mb-4"> {{ $t('AL KATHIRI MOTORS') }} </p>
                     <h1 class="font-bold text-white xl:text-[70px] lg:text-[70px] text-[50px] headText about" :data-about="$t('about us')">

@@ -1,33 +1,39 @@
-<template >
-    <div class="min-height-screen">
-        <div v-if="sliderFetch">
-            <iframe src="https://admin.alkathirimotors.com.sa/slide/alkathiri_ar" class="w-full h-[80vh]" frameborder="0"></iframe>
-        </div>
+<template>
+  <div class="min-height-screen">
+   
+    <lazy-HomeSlider />
+    <lazy-HomeSearch />
+    <lazy-HomeTypes />
+    <lazy-HomeAbout />
+    <lazy-HomeWhy />
+    <lazy-HomeBrands />
+    <lazy-HomeLatestCars />
+    <lazy-HomeNews />
+    <lazy-HomeSubscribe />
 
-        <HomeSearch></HomeSearch>
-        <HomeTypes></HomeTypes>
-        <HomeAbout></HomeAbout>
-        <HomeWhy></HomeWhy>
-        <HomeBrands></HomeBrands>
-        <HomeLatestCars></HomeLatestCars>
-        <HomeNews></HomeNews>
-        <HomeSubscribe></HomeSubscribe>
-    </div>
+    <!-- page loader  -->
+    <!-- <loader v-if="checkLoader"></loader> -->
+  </div>
 </template>
 <script setup>
- import {useHomeStore} from '@/stores/home';
- let store = useHomeStore();
- let sliderFetch = ref(false);
- store.fetchBrands();
- store.fetchCars();
- store.fetchNews();
+import { useHomeStore } from "@/stores/home";
+let store = useHomeStore();
+const { t } = useI18n();
+let checkLoader = ref(true);
+store.fetchBrands();
+store.fetchCars();
+store.fetchNews();
 
- onMounted(() => {
-    setTimeout(() => {
-        sliderFetch.value = true;
-    }, 1000);
- });
+useHead({
+      title: `${t('home')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
+
 </script>
-<style lang="">
-    
-</style>
+<style lang=""></style>

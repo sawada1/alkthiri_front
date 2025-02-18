@@ -1,5 +1,5 @@
 <template>
-  <div class="py-[70px] bg-[#f2f2f2] mt-[100px]">
+  <div class="xl:py-[70px] lg:py-[70px] py-[40px] bg-[#f2f2f2] xl:mt-[100px] lg:mt-[100px] mt-[70px]">
     <div class="container">
       <h3
         class="headText mb-10 text-center brands font-bold xl:text-[42px] lg:text-[42px] text-[32px] text-primary"
@@ -28,6 +28,7 @@
             placeholder="/images/placeholder.png"
             width="100"
             height="70"
+            :alt="item.name"
             loading="lazy"
           ></NuxtImg>
           <span class="text-primary text-[18px]"> {{ item.name }} </span>
