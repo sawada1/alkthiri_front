@@ -25,17 +25,17 @@ export default defineNuxtConfig({
   },
   image: {
     provider: "none",
-    format: ['webp'],
-    screens: {
-      'xs': 320,
-      'sm': 640,
-      'md': 768,
-      'lg': 1024,
-      'xl': 1280,
-      'xxl': 1536,
-      '2xl': 1536
-    },
-    quality: 80,
+    // format: ['webp'],
+    // screens: {
+    //   'xs': 320,
+    //   'sm': 640,
+    //   'md': 768,
+    //   'lg': 1024,
+    //   'xl': 1280,
+    //   'xxl': 1536,
+    //   '2xl': 1536
+    // },
+    // quality: 80,
   },
   i18n: {
     locales: [
@@ -63,7 +63,7 @@ export default defineNuxtConfig({
       useCookie: true, // Enable cookie usage
       cookieKey: "i18n_redirected", // Name of the cookie
       redirectOn: "root", // Redirect only on the root path
-      alwaysRedirect: true, // Disable to avoid redirecting every visit
+      alwaysRedirect: false, // Disable to avoid redirecting every visit
     },
   },
   app:{
