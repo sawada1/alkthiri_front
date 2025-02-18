@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config.ts',
   },
   image: {
+    provider: "none",
     format: ['webp'],
     screens: {
       'xs': 320,
