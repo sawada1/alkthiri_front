@@ -1,4 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import { getPrerenderRoutes } from "./utils/generate-routes";
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
@@ -6,20 +7,33 @@ export default defineNuxtConfig({
   tailwindcss: {
     configPath: 'tailwind.config.ts',
   },
-  // plugins:[{ src: '~/plugins/lang.ts', mode: 'client' }],
+  // target: 'static',
+  // experimental: {
+  //   payloadExtraction: true, // Enables dynamic payload extraction
+  // },
+  routeRules:{
+    '/offers/**': { isr: 60 } // Enable ISR (Incremental Static Regeneration)
+  },
   nitro: {
     minify: true,
     routeRules: {
+    
       // Cache static assets for 1 year
       '/_nuxt/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
 
       // Cache images for 1 month
       '/images/**': { headers: { 'Cache-Control': 'public, max-age=2592000, stale-while-revalidate=86400' } },
-
-      // Cache API responses for 5 minutes
-      '/api/**': { headers: { 'Cache-Control': 'public, max-age=300, stale-while-revalidate=60' } }
-    }
+    },
+    prerender: {
+      crawlLinks: true,
+      failOnError: false,
+      routes: await getPrerenderRoutes()
+    },
   },
+  // generate: {
+  //   // routes:await getPrerenderRoutes()
+  //   fallback: "404.html", // Ensures it falls back to an SSR page instead of an error
+  // },
   colorMode: {
     preference: 'light'
   },

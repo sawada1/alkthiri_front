@@ -15,7 +15,7 @@
     <!-- <loader v-if="checkLoader"></loader> -->
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { useHomeStore } from "@/stores/home";
 let store = useHomeStore();
 const { t } = useI18n();
@@ -23,6 +23,18 @@ let checkLoader = ref(true);
 store.fetchBrands();
 store.fetchCars();
 store.fetchNews();
+// const { data: offersRes } = await useFetch('https://jsonplaceholder.typicode.com/posts');
+
+onMounted(async() => {
+  const offersRes = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json() as { id: string }[];
+        // const blogsRes = await axios.get('https://yourapi.com/blogs');
+        // const categoriesRes = await axios.get('https://yourapi.com/categories');
+        console.log(offersRes);
+        
+        const offerRoutes = offersRes.map((offer) => `/offers/${offer.id}`);
+        console.log(offerRoutes);
+        
+});
 
 useHead({
       title: `${t('home')}`,
