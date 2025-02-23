@@ -1,45 +1,62 @@
 <template>
-    <div class="min-h-screen">
-    <div v-if="data">
-      <div>
-        {{ data?.id }}
-      </div>
-      <div>
-        {{ data?.name }}
-      </div>
+    <div class="container min-h-screen my-10">
+    <div v-if="store.offer">
+      <NuxtImg :src="store.offer.offer?.image" class="w-full rounded-[16px] xl:h-[800px] lg:h-[800px] h-[350px]" loading="lazy" :alt="store.offer.offer?.title"></NuxtImg>
+       <h1 class="text-primary my-10 font-bold xl:text-[32px] lg:text-[32px] text-[22px]"> {{ store.offer.offer?.title }} </h1>
+       <p class="text-tw-grey" v-html="store.offer.offer?.description"></p>
+       <div class="relative">
+       <ClientOnly>
+        <swiper-container class="latestSwiper" ref="containerRefOffer">
+          <swiper-slide v-for="(slide, idx) in store.offer?.offer_cars" :key="idx">
+          <carCard :car="slide"></carCard>
+          </swiper-slide>
+        </swiper-container>
+      </ClientOnly>
+      <button @click="swiper.next()"  aria-label="swiper" class="absolute z-10 top-[40%] left-2 hidden xl:block lg:block">
+        <svg xmlns="http://www.w3.org/2000/svg" height="40px" width="40px" viewBox="0 -960 960 960"  fill="#1b395f"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>      </button>
+      <button @click="swiper.prev()" id="swiperBtnOffer2" aria-label="swiper" class="absolute z-10 top-[40%] right-2 hidden xl:block lg:block">
+        <svg xmlns="http://www.w3.org/2000/svg" height="40px" width="40px" viewBox="0 -960 960 960"  fill="#1b395f"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>
+      </button>
+       </div>
     </div>
+    <loader v-if="store.loadingOffer"></loader>
     </div>
 </template>
 <script setup>
-definePageMeta({
-  validate: async (route) => {
-    try {
-      const response = await fetch(`https://admin.qitaf.webstdy.com/api/list/car/${route.params.id}`);
-      return response.ok;
-    } catch {
-      return false;
-    }
-  }
-});
-import axios from 'axios'
+import { useOffersStore } from "@/stores/offers";
+let store = useOffersStore();
+const localePath = useLocalePath();
 let route = useRoute();
-let arr = ref();
-  const getArr = async()=>{
-   let result = await axios.get(`https://admin.qitaf.webstdy.com/api/list/car/${route.params?.id}`);
-    if(result.status == 200){
-        arr.value = result.data;
-    }
-  };
-  const { data } = await useAsyncData(`offer-${route.params.id}`, async () => {
-  const response = await axios.get(`https://admin.qitaf.webstdy.com/api/list/car/${route.params.id}`);
-  return response.data.data;
-}, {
-  initialCache: false, // Forces data refresh when revisiting the page
-  revalidate: 60, // Regenerate after 60 seconds
+const containerRefOffer = ref(null);
+const swiper = useSwiper(containerRefOffer, {
+  spaceBetween: 10,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+  breakpoints: {
+    300: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 40,
+    },
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 60,
+    },
+  },
+  pagination: {
+    clickable: true,
+  },
 });
-  onMounted(() => {
-    // getArr();
-  });
+
+
+onMounted(()=>{
+  store.fetchOffer(route.params.id);
+});
 </script>
 <style lang="">
     

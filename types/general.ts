@@ -12,3 +12,24 @@ export interface ApiResponse<T> {
     image:string;
     parent_models:Models[]
   }
+
+  export interface Offers {
+    id: number;
+    image: string;
+    description: string;
+    title: string;
+  }
+  interface Offer{
+    id: number;
+    image: string;
+    description: string;
+    title: string;
+  }
+  interface OffersCars{
+    id:number;
+    name:string;
+  }
+  export interface OfferDetails {
+   offer:Offer;
+   offer_cars: OffersCars[];
+  }

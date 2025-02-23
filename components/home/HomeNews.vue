@@ -85,6 +85,12 @@ const swiper = useSwiper(containerRef2, {
     },
   },
 });
+
+onMounted(() => {
+  if(storeHome.newsArray.length == 0){
+    storeHome.fetchNews();
+}
+});
 </script>
 <style lang="scss">
 

@@ -95,20 +95,10 @@ body {
   width:100px;
 }
 
-swiper-container::part(container){
+.latestSwiper::part(container){
 
   padding-bottom: 100px;
 
-}
-swiper-container::part(pagination) {
-  // top: 150%;
-}
-swiper-container::part(bullet) {
-  // background-color: #1b395f;
-  // width: 39px;
-  // height: 12px;
-  // border-radius: 6px;
- 
 }
 swiper-container::part(bullet-active) {
   background-color: #1b395f;
@@ -196,6 +186,16 @@ html[dir="ltr"]{
         @include textAnimated(data-news, 60px, -80%, -20px, #1b395f);
       }
     }
+    &.offers{
+      &::before{
+        @include textAnimated(data-offers, 60px, -70%, 0px, #1b395f);
+      }
+    }
+    &.about-us{
+      &::before{
+        @include textAnimated(data-about-us, 60px, -70%, 0px, #1b395f);
+      }
+    }
   }
 }
 
@@ -225,6 +225,11 @@ html[dir="ltr"]{
       &.news{
         &::before{
           @include textAnimated(data-news, 35px, -45%, 0px, #1b395f);
+        }
+      }
+      &.offers{
+        &::before{
+          @include textAnimated(data-offers, 35px, -45%, 0px, #1b395f);
         }
       }
     }

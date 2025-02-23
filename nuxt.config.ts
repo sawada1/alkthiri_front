@@ -1,4 +1,4 @@
-import { getPrerenderRoutes } from "./utils/generate-routes";
+// import { getPrerenderRoutes } from "./utils/generate-routes";
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -11,9 +11,9 @@ export default defineNuxtConfig({
   // experimental: {
   //   payloadExtraction: true, // Enables dynamic payload extraction
   // },
-  routeRules:{
-    '/offers/**': { isr: 60 } // Enable ISR (Incremental Static Regeneration)
-  },
+  // routeRules:{
+  //   '/offers/**': { isr: 60 } // Enable ISR (Incremental Static Regeneration)
+  // },
   nitro: {
     minify: true,
     routeRules: {
@@ -24,16 +24,12 @@ export default defineNuxtConfig({
       // Cache images for 1 month
       '/images/**': { headers: { 'Cache-Control': 'public, max-age=2592000, stale-while-revalidate=86400' } },
     },
-    prerender: {
-      crawlLinks: true,
-      failOnError: false,
-      routes: await getPrerenderRoutes()
-    },
+    // prerender: {
+    //   crawlLinks: true,
+    //   failOnError: false,
+    //   // routes: await getPrerenderRoutes()
+    // },
   },
-  // generate: {
-  //   // routes:await getPrerenderRoutes()
-  //   fallback: "404.html", // Ensures it falls back to an SSR page instead of an error
-  // },
   colorMode: {
     preference: 'light'
   },

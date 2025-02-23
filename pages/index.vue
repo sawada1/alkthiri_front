@@ -20,10 +20,6 @@ import { useHomeStore } from "@/stores/home";
 let store = useHomeStore();
 const { t } = useI18n();
 let checkLoader = ref(true);
-store.fetchBrands();
-store.fetchCars();
-store.fetchNews();
-// const { data: offersRes } = await useFetch('https://jsonplaceholder.typicode.com/posts');
 
 onMounted(async() => {
   const offersRes = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json() as { id: string }[];
@@ -46,6 +42,7 @@ useHead({
         { property: 'og:description', content: 'test' },
       ],
     });
+    
 
 </script>
 <style lang=""></style>

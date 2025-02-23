@@ -59,5 +59,10 @@ const goToBrandPageByIdAndName = (id) => {
   const fullLocalePath = localePath(updatedRoute);
   router.push(fullLocalePath);
 };
+onMounted(() => {
+  if(store.brandArray.length == 0){
+  store.fetchBrands();
+}
+});
 </script>
 <style lang=""></style>

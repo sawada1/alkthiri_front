@@ -23,20 +23,9 @@
         </div>
       </div>
       <ClientOnly>
-        <swiper-container ref="containerRef">
+        <swiper-container class="latestSwiper" ref="containerRef">
           <swiper-slide v-for="(slide, idx) in storeHome.latestArray" :key="idx">
-            <div class="flex flex-col gap-4 items-center">
-              <NuxtImg
-                :src="slide.main_image"
-                placeholder="/images/placeholder.png"
-                class="w-full h-[200px] object-cover"
-                :alt="slide.name"
-                loading="lazy"
-              ></NuxtImg>
-              <span class="text-[16px] text-primary font-semibold">
-                {{ slide.name }}
-              </span>
-            </div>
+          <carCard :car="slide"></carCard>
           </swiper-slide>
         </swiper-container>
       </ClientOnly>
@@ -63,9 +52,9 @@ const swiper = useSwiper(containerRef, {
     disableOnInteraction: false,
   },
   breakpoints: {
-    640: {
-      slidesPerView: 1,
-      spaceBetween: 50,
+    300: {
+      slidesPerView: 2,
+      spaceBetween: 20,
     },
     768: {
       slidesPerView: 2,
@@ -99,6 +88,12 @@ const goToCarPage = (carid, modelcarid, carname) => {
   const fullLocalePath = localePath(updatedRoute);
   router.push(fullLocalePath);
 };
+
+onMounted(() => {
+  if(storeHome.latestArray.length == 0){
+    storeHome.fetchCars();
+}
+});
 </script>
 <style>
 :host(.swiper) {

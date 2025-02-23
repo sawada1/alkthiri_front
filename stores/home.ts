@@ -9,6 +9,7 @@ import { Brands , Latest , News } from "@/types/home";
         brandArray:[] as Brands[],
         latestArray:[] as Latest[],
         newsArray:[] as News[],
+        brandStored: undefined as number | undefined,
         spinner_brands:false,
         spinner_latest:false,
       }),
@@ -23,6 +24,9 @@ import { Brands , Latest , News } from "@/types/home";
             if(result.status == 200){
               this.spinner_brands = false;
               this.brandArray = result.data.data;
+              this.brandStored = result.data.data[0]?.id
+              console.log(this.brandStored);
+              
             }
           } catch (error) {
           } finally {
