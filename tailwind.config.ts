@@ -39,6 +39,7 @@ export default <Partial<Config>>{
       },
       colors: {
         "primary": "#1b395f",
+        "grey":"#f2f2f2",
         "tw-primary": "#1b395f",
         "tw-grey": "#6F6F6E",
         "tw-dark": "#222222",

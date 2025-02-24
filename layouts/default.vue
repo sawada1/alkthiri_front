@@ -1,10 +1,16 @@
 <template>
-    <div class="">
-        <LayoutNav />
-        <slot />
-        <LayoutFooter />
+    <div class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <LayoutNav />
 
-    </div>
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <NuxtPage />
+    </main>
+
+    <!-- Footer -->
+    <LayoutFooter />
+  </div>
 </template>
 <script setup lang="ts">
 
