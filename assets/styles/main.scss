@@ -196,6 +196,11 @@ html[dir="ltr"]{
         @include textAnimated(data-about-us, 60px, -70%, 0px, #1b395f);
       }
     }
+    &.contact{
+      &::before{
+        @include textAnimated(data-contact, 60px, -70%, 0px, #1b395f);
+      }
+    }
   }
 }
 

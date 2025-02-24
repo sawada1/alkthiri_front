@@ -33,3 +33,22 @@ export interface ApiResponse<T> {
    offer:Offer;
    offer_cars: OffersCars[];
   }
+
+  export interface Branches{
+    address: string;
+    email: string;
+    frame: string;
+    name: string;
+    phone: string;
+    time_of_work: string;
+    whatsapp: string;
+  }
+  export interface BranchTypes {
+    name: string;
+    branches: Branches[]
+  }
+
+  export interface BranchesData{
+    name: string;
+    types: BranchTypes[]
+  }
