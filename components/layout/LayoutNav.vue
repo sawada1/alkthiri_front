@@ -18,11 +18,11 @@
                             {{ $t("offers") }}</nuxt-link>
                     </div>
                     <div class="nav-item">
-                        <nuxt-link :to="localePath('/contact')" class="nav-link relative text-tw-grey">
+                        <nuxt-link :to="localePath('/contact-us')" class="nav-link relative text-tw-grey">
                             {{ $t("contact us") }}</nuxt-link>
                     </div>
                     <div class="nav-item">
-                        <nuxt-link :to="localePath('/about')" class="nav-link relative text-tw-grey">
+                        <nuxt-link :to="localePath('/about-us')" class="nav-link relative text-tw-grey">
                             {{ $t("about us") }}</nuxt-link>
                     </div>
                     <div class="nav-item">
@@ -91,11 +91,11 @@
                             {{ $t("offers") }}</nuxt-link>
                     </div>
                     <div class="nav-item">
-                        <nuxt-link :to="localePath('/contact')" class="nav-link relative text-tw-grey">
+                        <nuxt-link :to="localePath('/contact-us')" class="nav-link relative text-tw-grey">
                             {{ $t("contact us") }}</nuxt-link>
                     </div>
                     <div class="nav-item">
-                        <nuxt-link :to="localePath('/about')" class="nav-link relative text-tw-grey">
+                        <nuxt-link :to="localePath('/about-us')" class="nav-link relative text-tw-grey">
                             {{ $t("about us") }}</nuxt-link>
                     </div>
                     <div class="nav-item">

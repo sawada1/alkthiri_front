@@ -1,0 +1,40 @@
+{
+  "hash": "23849d4b",
+  "configHash": "d4b29982",
+  "lockfileHash": "7edecfda",
+  "browserHash": "dd79cca0",
+  "optimized": {
+    "@intlify/shared": {
+      "src": "../../node_modules/@intlify/shared/dist/shared.mjs",
+      "file": "@intlify_shared.js",
+      "fileHash": "06db56e1",
+      "needsInterop": false
+    },
+    "is-https": {
+      "src": "../../node_modules/is-https/dist/index.mjs",
+      "file": "is-https.js",
+      "fileHash": "7657c235",
+      "needsInterop": false
+    },
+    "@intlify/core-base": {
+      "src": "../../node_modules/@intlify/core-base/dist/core-base.mjs",
+      "file": "@intlify_core-base.js",
+      "fileHash": "777e10ea",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "6de94e7a",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-O6TR6ZKH": {
+      "file": "chunk-O6TR6ZKH.js"
+    },
+    "chunk-PZ5AY32C": {
+      "file": "chunk-PZ5AY32C.js"
+    }
+  }
+}

@@ -14,6 +14,10 @@ export default defineNuxtConfig({
   // routeRules:{
   //   '/offers/**': { isr: 60 } // Enable ISR (Incremental Static Regeneration)
   // },
+
+  // vite: {
+  //   cacheDir: false
+  // },
   nitro: {
     minify: true,
     routeRules: {

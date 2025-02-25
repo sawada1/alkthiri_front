@@ -47,7 +47,7 @@
             <nuxt-link :to="localePath('/accounts')" class="text-white">
               <span>{{ $t("accounts") }}</span>
             </nuxt-link>
-            <nuxt-link :to="localePath('/contact')" class="text-white">
+            <nuxt-link :to="localePath('/contact-us')" class="text-white">
               <span>{{ $t("contact us") }}</span>
             </nuxt-link>
 
