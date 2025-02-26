@@ -21,7 +21,6 @@ html {
 
 body {
     font-family: "Janna-lt", sans-serif;
-    min-height: 2000px;
 }
 
 ::-webkit-scrollbar {
@@ -219,6 +218,11 @@ html[dir="ltr"]{
         @include textAnimated(data-contact, 60px, -70%, 0px, #1b395f);
       }
     }
+    &.faq{
+      &::before{
+        @include textAnimated(data-faq, 60px, -60%, 0px, #1b395f);
+      }
+    }
   }
 }
 
@@ -253,6 +257,11 @@ html[dir="ltr"]{
       &.offers{
         &::before{
           @include textAnimated(data-offers, 35px, -45%, 0px, #1b395f);
+        }
+      }
+      &.faq{
+        &::before{
+          @include textAnimated(data-faq, 40px, -30%, 0px, #1b395f);
         }
       }
     }

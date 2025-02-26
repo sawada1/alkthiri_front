@@ -3,10 +3,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules:["@nuxtjs/i18n" , "@nuxt/ui" , "@nuxtjs/tailwindcss"  , "@pinia/nuxt" , "@nuxt/image" , "nuxt-swiper" , "@nuxt/icon" , "@vee-validate/nuxt"],
-  tailwindcss: {
-    configPath: 'tailwind.config.ts',
-  },
+  modules:["@nuxtjs/i18n" , "@nuxt/ui"  , "@pinia/nuxt" , "@nuxt/image" , "nuxt-swiper" , "@nuxt/icon" , "@vee-validate/nuxt"],
+  // tailwindcss: {
+  //   configPath: 'tailwind.config.ts',
+  // },
   // target: 'static',
   // experimental: {
   //   payloadExtraction: true, // Enables dynamic payload extraction
@@ -33,6 +33,12 @@ export default defineNuxtConfig({
     //   failOnError: false,
     //   // routes: await getPrerenderRoutes()
     // },
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
   },
   colorMode: {
     preference: 'light'

@@ -34,6 +34,26 @@ export interface ApiResponse<T> {
    offer_cars: OffersCars[];
   }
 
+  export interface Faqs{
+    answer: string;
+    question: string;
+    id: number;
+  }
+  export interface Services{
+    description: string;
+    image: string;
+    name: string;
+    id: number;
+  }
+  export interface Banks{
+    account_no: string;
+    iban: string;
+    name: string;
+    image: string;
+    owner_name: string;
+    id: number;
+  }
+
   export interface Branches{
     address: string;
     email: string;
