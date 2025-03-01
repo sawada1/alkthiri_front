@@ -1,9 +1,7 @@
 <template>
   <div class="container min-h-[140vh] mt-10 mb-[150px]">
-    <h1
-      class="headText font-bold contact mb-10 text-primary xl:text-[42px] lg:text-[42px] text-[32px]"
-      :data-contact="$t('KEEP IN TOUCH')"
-    >
+    <h1 class="headText font-bold contact mb-10 text-primary xl:text-[42px] lg:text-[42px] text-[32px]"
+      :data-contact="$t('KEEP IN TOUCH')">
       {{ $t("CONTACT US NOW") }}
     </h1>
 
@@ -11,32 +9,20 @@
       <div class="col-span-2">
         <UAccordion :items="filterd">
           <template #default="{ item, index, open }">
-            <UButton
-              color="gray"
-              variant="ghost"
-              class="bg-grey py-4 mb-3 dark:border-gray-700"
-            >
+            <UButton color="gray" variant="ghost" class="bg-grey py-4 mb-3 dark:border-gray-700">
               <template #leading>
                 <div
-                  class="w-[37px] h-[37px] rounded-full bg-primary-500 dark:bg-primary-400 flex items-center justify-center"
-                >
+                  class="w-[37px] h-[37px] rounded-full bg-primary-500 dark:bg-primary-400 flex items-center justify-center">
                   <!-- <Icon name="material-symbols:location-on-outline" class="w-7 h-7 text-white dark:text-gray-900" /> -->
-                  <UIcon
-                    name="material-symbols:location-on"
-                    class="w-6 h-6 text-white dark:text-gray-900"
-                  />
+                  <UIcon name="material-symbols:location-on" class="w-6 h-6 text-white dark:text-gray-900" />
                 </div>
               </template>
 
-              <span class="truncate text-lg font-bold"
-                >{{ index + 1 }} . {{ item.name }}</span
-              >
+              <span class="truncate text-lg font-bold">{{ index + 1 }} . {{ item.name }}</span>
 
               <template #trailing>
-                <UIcon
-                  :name="open ? 'i-heroicons-minus' : 'i-heroicons-plus'"
-                  class="w-5 h-5 ms-auto transform transition-transform duration-200"
-                />
+                <UIcon :name="open ? 'i-heroicons-minus' : 'i-heroicons-plus'"
+                  class="w-5 h-5 ms-auto transform transition-transform duration-200" />
               </template>
             </UButton>
           </template>
@@ -44,127 +30,137 @@
             <div class="bg-grey rounded-[8px] p-3">
               <!-- {{ activeBranch }} -->
               <div class="flex items-center flex-wrap gap-4 mb-8">
-                <UButton
-                  v-for="i , indexBranch in item.types"
-                  @click="
-                    (activeBranchIndex[index] = indexBranch),
-                      (checkBranch = i.id)
+                <UButton v-for="i, indexBranch in item.types" @click="
+                  (activeBranchIndex[index] = indexBranch),
+                  (checkBranch = i.id)
                   "
                   class="px-8 py-2 font-bold rounded-[18px] active bg-transparent text-primary shadow-none hover:bg-primary hover:text-white"
                   :class="{
                     'bg-primary text-white shadow-shadow1':
                       activeBranchIndex[index] == indexBranch,
-                  }"
-                >
+                  }">
                   {{ indexBranch }} {{ i.name }}
                 </UButton>
               </div>
-               {{ index }}
-               <div v-for="(model, mindex) in item.types" :key="mindex" > 
-              <div  v-for="branch in model?.branches"  class="flex flex-col gap-[30px]">
-                <div
-                  class="flex xl:gap-[100px] lg:gap-[100px] gap-[30px] flex-col border-b border-b-tw-grey pb-4  xl:flex-row lg:flex-row"
-                >
+              {{ index }}
+              <div v-for="(model, mindex) in item.types" :key="mindex">
+                <div v-for="branch in model?.branches" class="flex flex-col gap-[30px]">
                   <div
-                    class="flex flex-col gap-4 xl:w-[289px] lg:w-[289px] w-full"
-                  >
-                    <h3 class="text-[22px] font-bold text-primary">
-                      {{ branch.name }}
-                    </h3>
-                    <div
-                      class="h-[333px] iframeBranch bg-primary w-full border-[2px] border-white rounded-[22px]"
-                    v-html="branch.frame"
-                    ></div>
-                  </div>
-                  <div class="">
-                    <h4
-                      class="border-b border-b-primary border-t border-t-primary py-4 text-primary text-[22px] font-bold"
-                    >
-                      {{ $t("contact data") }}
-                    </h4>
-                    <div class="flex flex-col my-5 gap-4">
-                      <div class="flex items-center gap-2">
-                        <UIcon
-                          name="material-symbols:location-on"
-                          class="w-6 h-6 text-primary dark:text-gray-900"
-                        />
-                        <p> {{ branch.address }} </p>
-                      </div>
-                      <div class="flex items-center gap-2">
-                        <UIcon
-                          name="material-symbols:call"
-                          class="w-6 h-6 text-primary dark:text-gray-900"
-                        />
-                        <p>{{ branch.phone }}</p>
-                      </div>
-                      <div class="flex items-center gap-2">
-                        <UIcon
-                          name="ion:logo-whatsapp"
-                          class="w-6 h-6 text-primary dark:text-gray-900"
-                        />
-                        <p> {{ branch.whatsapp }} </p>
-                      </div>
-                      <div class="flex items-center gap-2">
-                        <UIcon
-                          name="material-symbols-light:mail"
-                          class="w-6 h-6 text-primary dark:text-gray-900"
-                        />
-                        <p> {{ branch.email }} </p>
-                      </div>
+                    class="flex xl:gap-[100px] lg:gap-[100px] gap-[30px] flex-col border-b border-b-tw-grey pb-4  xl:flex-row lg:flex-row">
+                    <div class="flex flex-col gap-4 xl:w-[289px] lg:w-[289px] w-full">
+                      <h3 class="text-[22px] font-bold text-primary">
+                        {{ branch.name }}
+                      </h3>
+                      <div class="h-[333px] iframeBranch bg-primary w-full border-[2px] border-white rounded-[22px]"
+                        v-html="branch.frame"></div>
                     </div>
-                    <h4
-                      class="border-b border-b-primary border-t border-t-primary py-4 text-primary text-[22px] font-bold"
-                    >
-                      {{ $t("working hours") }}
-                    </h4>
-                    <h5
-                      class="my-5 text-[#6F6F6E] text-center font-bold text-[18px]"
-                    >
-                      {{ $t("everyday") }}
-                    </h5>
-                    <div class="htmlTextBranch" v-html="branch.time_of_work"></div>
+                    <div class="">
+                      <h4
+                        class="border-b border-b-primary border-t border-t-primary py-4 text-primary text-[22px] font-bold">
+                        {{ $t("contact data") }}
+                      </h4>
+                      <div class="flex flex-col my-5 gap-4">
+                        <div class="flex items-center gap-2">
+                          <UIcon name="material-symbols:location-on" class="w-6 h-6 text-primary dark:text-gray-900" />
+                          <p> {{ branch.address }} </p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                          <UIcon name="material-symbols:call" class="w-6 h-6 text-primary dark:text-gray-900" />
+                          <p>{{ branch.phone }}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                          <UIcon name="ion:logo-whatsapp" class="w-6 h-6 text-primary dark:text-gray-900" />
+                          <p> {{ branch.whatsapp }} </p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                          <UIcon name="material-symbols-light:mail" class="w-6 h-6 text-primary dark:text-gray-900" />
+                          <p> {{ branch.email }} </p>
+                        </div>
+                      </div>
+                      <h4
+                        class="border-b border-b-primary border-t border-t-primary py-4 text-primary text-[22px] font-bold">
+                        {{ $t("working hours") }}
+                      </h4>
+                      <h5 class="my-5 text-[#6F6F6E] text-center font-bold text-[18px]">
+                        {{ $t("everyday") }}
+                      </h5>
+                      <div class="htmlTextBranch" v-html="branch.time_of_work"></div>
+                    </div>
                   </div>
                 </div>
+
               </div>
-               
-               </div>
             </div>
           </template>
         </UAccordion>
       </div>
-      <div>
-        <UForm ref="form" :schema="schema" :state="state" class="space-y-4" @submit="onSubmit" @error="onError">
-    <UFormGroup :label="$t('email')" name="email" class="text-[20px]">
-      <UInput v-model="state.email" />
-    </UFormGroup>
-    <UFormGroup :label="$t('your message')" name="message">
-      <UTextarea  v-model="state.message" />
-      
-    </UFormGroup>
-    <UFormGroup :label="$t('full name')"  name="name">
-      <UInput v-model="state.name" :placeholder="$t('write your name..')" />
-    </UFormGroup>
-    <UFormGroup :label="$t('phone')" name="phone">
-      <UInput v-model="state.phone" />
-    </UFormGroup>
-    <UFormGroup :label="$t('message title')" name="title">
-      <UInput v-model="state.title" />
-    </UFormGroup>
+      <div class="relative h-full">
+        <div class="bg-white p-4 rounded-[16px] shadow-shadow1 sticky top-10">
+          <UForm ref="form" :schema="schema" :state="state" class="space-y-4" @submit="onSubmit" @error="onError">
+            <UFormGroup  name="name">
+              <div class="flex flex-col gap-2">
+                <span class="text-primary text-[16px] font-bold"> {{ $t('full name') }} </span>
   
-    <UFormGroup label="Email" name="terms_and_privacy">
-    <div class="flex items-center gap-2">
-      <UCheckbox color="primary" id="checkInp"  v-model="state.terms_and_privacy" />
-      <label for="checkInp">
-       {{ $t("I have read and unconditionally agree to the") }}
-      </label>
-    </div>
-    </UFormGroup>
-  
+                <UInput v-model="state.name" :placeholder="$t('write your name..')" />
 
-    <UButton class="w-full flex items-center justify-center py-2" type="submit">
-      {{ $t('send') }}
-    </UButton>
-  </UForm>
+              </div>
+
+            </UFormGroup>
+            <UFormGroup name="email">
+              <div class="flex flex-col gap-2">
+                <span class="text-primary text-[16px] font-bold"> {{ $t('email') }} </span>
+                <UInput v-model="state.email" placeholder="example@mail.com.." />
+              </div>
+            </UFormGroup>
+            <UFormGroup  name="phone">
+              <div class="flex flex-col gap-2">
+                <span class="text-primary text-[16px] font-bold"> {{ $t('phone number') }} </span>
+  
+                <UInput v-model="state.phone" placeholder="05xxxxxxxx" />
+
+              </div>
+            </UFormGroup>
+            <UFormGroup  name="title">
+              <div class="flex flex-col gap-2">
+                <span class="text-primary text-[16px] font-bold"> {{ $t('message title') }} </span>
+                <UInput v-model="state.title" :placeholder="$t('write your message title...')" />
+
+              </div>
+            </UFormGroup>
+            <UFormGroup  name="message">
+              <div class="flex flex-col gap-2">
+                <span class="text-primary text-[16px] font-bold"> {{ $t('your message') }} </span>
+                <UTextarea v-model="state.message" :placeholder="$t('write your message here')" />
+              </div>
+
+            </UFormGroup>
+
+            <UFormGroup  name="terms_and_privacy">
+              <div class="flex items-center gap-2">
+                <UCheckbox color="primary" id="checkInp" v-model="state.terms_and_privacy" />
+                <label for="checkInp">
+                  {{ $t("I have read and unconditionally agree to the") }}
+                  <nuxt-link :to="$localePath('/terms')" class="text-primary underline">
+                    {{ $t("Term And Conditions") }}
+
+                  </nuxt-link>
+                
+                    {{ $t("and") }}
+                    <nuxt-link :to="$localePath('/policy')" class="text-primary underline">
+                    {{ $t("Privacy Policy") }}
+
+                  </nuxt-link>
+               
+                </label>
+              </div>
+            </UFormGroup>
+
+
+            <UButton :disabled="pendingBtn" class="w-full flex  disabled:cursor-not-allowed disabled:opacity-50 items-center justify-center py-2" type="submit">
+              {{ $t('send') }}
+            </UButton>
+          </UForm>
+        </div>
       </div>
     </div>
   </div>
@@ -173,41 +169,58 @@
 <script setup lang="ts">
 import { useContactStore } from "@/stores/contact";
 import { BranchTypes, Branches } from "@/types/general";
-import { object, string, type InferType } from 'yup'
-import type { FormSubmitEvent , Form , FormErrorEvent } from '#ui/types'
-
+import { number, object, string, type InferType } from 'yup'
+import type { FormSubmitEvent, Form, FormErrorEvent } from '#ui/types'
+const { t, locale } = useI18n();
+let router = useRouter();
+const localePath = useLocalePath();
 const schema = object({
-  email: string().email('Invalid email').required('Required'),
-  message: string().required('Required'),
-  title: string().required('Required'),
-  name: string().required('Required'),
-  terms_and_privacy: string().required('Required'),
-  phone: string().required('Required'),
+  email: string().email('Invalid email').required(t('Required')),
+  message: string().required(t('Required')),
+  title: string().required(t('Required')),
+  name: string().required(t('Required')),
+  terms_and_privacy: string().required(t('Required')),
+  phone: string().required(t('Required')),
 })
 
 type Schema = InferType<typeof schema>
-
+let pendingBtn = ref(false);
 const state = reactive({
   message: "",
   email: "",
   title: "",
   name: "",
   phone: "",
-  terms_and_privacy: true,
+  terms_and_privacy: undefined,
 })
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  // Do something with event.data
   form.value!.clear()
+
   try {
+    pendingBtn.value = true;
     const response = await useApi().post('contact-us' , state)
-    // ...
-  } catch (err) {
-      form.value!.setErrors(err.data.errors.map((err) => ({
-        // Map validation errors to { path: string, message: string }
-        message: err.message,
-        path: err.path,
-      })))
+    if(response.status === 201){
+      pendingBtn.value = false;
+      router.push(localePath('/thank-you'));
+      Object.assign(state, {
+        message: "",
+        email: "",
+        title: "",
+        name: "",
+        phone: "",
+        terms_and_privacy: undefined
+      });
+    }
+  } catch (err:any) {
+    pendingBtn.value = false;
+    const errors = Object.entries(err.response.data.errors).map(([key , val])=>{
+      return{
+        path: key,
+        message: Array.isArray(val) ? val[0] : val
+      }
+    })
+      form.value!.setErrors(errors);  
   }
 }
 const form = ref<Form<Schema>>()
@@ -227,7 +240,7 @@ let types = ref([
     name: "city 1",
     types: [
       {
-        id:1,
+        id: 1,
         name: "test1",
         branches: [
           {
@@ -244,7 +257,7 @@ let types = ref([
         ],
       },
       {
-        id:2,
+        id: 2,
         name: "test2",
         branches: [
           {
@@ -277,7 +290,7 @@ let types = ref([
       },
       {
         name: "test4",
-        id:3,
+        id: 3,
         branches: [
           {
             name: "dsds",
@@ -299,7 +312,7 @@ let types = ref([
     types: [
       {
         name: "test11",
-        id:4,
+        id: 4,
         branches: [
           {
             name: "testt22",
@@ -316,7 +329,7 @@ let types = ref([
       },
       {
         name: "test2",
-        id:5,
+        id: 5,
         branches: [
           {
             name: "testt222",
@@ -341,7 +354,7 @@ let types = ref([
       },
       {
         name: "test5",
-        id:6,
+        id: 6,
         branches: [
           {
             name: "dsds22222222",
@@ -363,7 +376,7 @@ let types = ref([
     types: [
       {
         name: "2صالة عرض",
-        id:7,
+        id: 7,
         branches: [
           {
             name: "testtt3",
@@ -402,7 +415,7 @@ let types = ref([
       },
       {
         name: "2مركز صيانة",
-        id:8,
+        id: 8,
         branches: [
           {
             name: "2222",
@@ -439,7 +452,7 @@ let types = ref([
     types: [
       {
         name: "3صالة عرض",
-        id:9,
+        id: 9,
         branches: [
           {
             name: "testtt44",
@@ -478,7 +491,7 @@ let types = ref([
       },
       {
         name: "3مركز صيانة",
-        id:10,
+        id: 10,
         branches: [
           {
             name: "2222  3",
@@ -513,16 +526,16 @@ let types = ref([
 ]);
 
 const filterd = ref(types.value.map((item) => ({
-    ...item,
-    types: item.types.filter((type) => type.branches.length > 0),
-  })))
-const removeEmptyArrays = (arr: any[]): any[] =>{
+  ...item,
+  types: item.types.filter((type) => type.branches.length > 0),
+})))
+const removeEmptyArrays = (arr: any[]): any[] => {
   return arr
     .map(item => Array.isArray(item) ? removeEmptyArrays(item) : item) // Recursively clean nested arrays
     .filter(item => !(Array.isArray(item) && item.length === 0)); // Remove empty arrays
 }
 const filteredBranches = computed(() => {
-return removeEmptyArrays(types.value.map((city) => city.types.map((type) => type.branches)))
+  return removeEmptyArrays(types.value.map((city) => city.types.map((type) => type.branches)))
 
 });
 
@@ -530,7 +543,7 @@ return removeEmptyArrays(types.value.map((city) => city.types.map((type) => type
 console.log(filterd.value);
 let indexBranc = ref(filterd.value.flatMap(group => group.types.map(item => 0)));
 
-let branches = ref(types.value.filter((ele)=> ele.types.filter((e)=> e.branches.length > 0)))
+let branches = ref(types.value.filter((ele) => ele.types.filter((e) => e.branches.length > 0)))
 let activeSubBranch = ref<Branches[]>([]);
 let activeBranchIndex = ref(Array(4).fill(0));
 const getSubData = (data: BranchTypes[]) => {
@@ -566,6 +579,7 @@ onMounted(() => {
     border-radius: 16px;
   }
 }
+
 .htmlTextBranch {
   p {
     text-align: center !important;

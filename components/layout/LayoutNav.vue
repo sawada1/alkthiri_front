@@ -57,7 +57,9 @@
                     <SvgSearch></SvgSearch>
                     </button>
                 </div>
-                <button id="bookButton" class="bg-tw-primary text-white rounded-lg px-4 py-2 shadow-shadow2"> {{ $t("book For Maintenance") }} </button>
+                <nuxt-link :to="localePath('/maintenance')">
+                    <button id="bookButton" class="bg-tw-primary text-white rounded-lg px-4 py-2 shadow-shadow2"> {{ $t("book For Maintenance") }} </button>
+                </nuxt-link>
             </div>
             <button id="toggleLabelIcon" aria-label="toggle" @click="isOpen = true" class="xl:hidden lg:hidden block">
                 <Icon name="flowbite:align-left-outline" color="" class="bg-tw-primary w-[35px] h-[35px]" width="40" height="40" />
@@ -129,7 +131,9 @@
                     <SvgSearch></SvgSearch>
                     </button>
                 </div>
-                <button id="bookLabel2" aria-label="book" class="bg-tw-primary text-white rounded-lg px-4 py-2 shadow-shadow2"> {{ $t("book For Maintenance") }} </button>
+                <nuxt-link :to="localePath('/maintenance')">
+                    <button id="bookLabel2" aria-label="book" class="bg-tw-primary text-white rounded-lg px-4 py-2 shadow-shadow2"> {{ $t("book For Maintenance") }} </button>
+                </nuxt-link>
             </div>
         <Placeholder class="h-full" />
       </div>
