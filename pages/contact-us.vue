@@ -175,7 +175,7 @@ const { t, locale } = useI18n();
 let router = useRouter();
 const localePath = useLocalePath();
 const schema = object({
-  email: string().email('Invalid email').required(t('Required')),
+  email: string().email(t('Invalidemail')).required(t('Required')),
   message: string().required(t('Required')),
   title: string().required(t('Required')),
   name: string().required(t('Required')),

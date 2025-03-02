@@ -17,7 +17,7 @@
     --dp-hover-color: #f3f3f3;
     --dp-hover-text-color: #212121;
     --dp-hover-icon-color: #959595;
-    --dp-primary-color: red;
+    --dp-primary-color: #1b395f !important;
     --dp-primary-disabled-color: #6bacea;
     --dp-primary-text-color: #f8f5f5;
     --dp-secondary-color: #c0c4cc;
@@ -39,6 +39,10 @@
     --dp-range-between-dates-background-color: var(--dp-hover-color, #f3f3f3);
     --dp-range-between-dates-text-color: var(--dp-hover-text-color, #212121);
     --dp-range-between-border-color: var(--dp-hover-color, #f3f3f3);
+}
+
+html[dir="rtl"] .dp--arrow-btn-nav{
+   transform: scaleX(-1);
 }
 :root {
   --color-primary-50: 242 247 253;
