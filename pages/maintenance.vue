@@ -41,7 +41,6 @@
               <UInput v-model="state.phone" placeholder="05xxxxxxxx" />
             </div>
           </UFormGroup>
-          {{ state.brand_id }}
           <UFormGroup name="brand_id">
             <div class="flex flex-col gap-2">
               <span class="text-primary text-[16px] font-bold">
@@ -64,6 +63,7 @@
                   <span class="truncate">{{ person.name }}</span>
                 </template>
               </USelectMenu>
+          
             </div>
           </UFormGroup>
           <UFormGroup name="model_id">
@@ -71,10 +71,21 @@
               <span class="text-primary text-[16px] font-bold">
                 {{ $t("Which car model are you booking for?") }}
               </span>
-              <UInput
-                v-model="state.model_id"
+              <USelectMenu
+                v-model="model"
+                :options="brands_models"
                 :placeholder="$t('Select Model...')"
-              />
+                class="w-full"
+                searchable
+                :searchable-placeholder="$t('search')"
+                option-attribute="name"
+                by="id"
+                :search-attributes="['name', 'id']"
+              >
+                <template #option="{ option: person }">
+                  <span class="truncate">{{ person.name }}</span>
+                </template>
+              </USelectMenu>
             </div>
           </UFormGroup>
           <UFormGroup name="model_year">
@@ -90,7 +101,22 @@
               <span class="text-primary text-[16px] font-bold">
                 {{ $t("maintHead") }}
               </span>
-              <UInput v-model="state.maintenance_type" />
+              <USelectMenu
+                v-model="maintenance_type"
+                :options="maintenance_types"
+                @update:model-value="fetchModels"
+                :placeholder="$t('maintHead')"
+                class="w-full"
+                searchable
+                :searchable-placeholder="$t('search')"
+                option-attribute="name"
+                by="value"
+                :search-attributes="['name', 'value']"
+              >
+                <template #option="{ option: person }">
+                  <span class="truncate">{{ person.name }}</span>
+                </template>
+              </USelectMenu>
             </div>
           </UFormGroup>
           <div class="">
@@ -126,6 +152,7 @@
                     <USelectMenu
                       v-model="branch"
                       :options="branches"
+                      @update:model-value="getTimeSlots"
                       :placeholder="$t('Select branch...')"
                       class="w-full"
                       searchable
@@ -169,24 +196,24 @@
               />
               <label for="checkInp">
                 {{ $t("I have read and unconditionally agree to the") }}
-                <nuxt-link
-                  :to="$localePath('/terms')"
+                <button
+                   @click.stop="isOpen = true"
                   class="text-primary underline"
                 >
                   {{ $t("Term And Conditions") }}
-                </nuxt-link>
+                </button>
 
                 {{ $t("and") }}
-                <nuxt-link
-                  :to="$localePath('/policy')"
+                <button
+                @click.stop="isOpen2 = true"
                   class="text-primary underline"
                 >
                   {{ $t("Privacy Policy") }}
-                </nuxt-link>
+                </button>
               </label>
             </div>
           </UFormGroup>
-          {{ allowedDays }}
+
 
           <UButton
             :disabled="pendingBtn"
@@ -202,7 +229,7 @@
           inline
           ref="datepicker"
           v-model="selectedDate"
-          :disabled="false"
+          :disabled="checkTime"
           :min-date="min"
           :max-date="max"
           prevent-min-max-navigation
@@ -213,21 +240,28 @@
           :show="['month', 'day']"
           :enable-time-picker="false"
           :day-names="locale === 'en' ? dayNamesEN : dayNamesAR"
+          @update:model-value="getTimeSlots"
         />
-        <div class="p-4 shadow-shadow1 rounded-xl">
+        <div v-if="timeSlots.length >= 1" class="p-4 shadow-shadow1 rounded-xl">
           <h5 class="text-[18px] text-primary font-bold mb-4">
             {{ $t("time") }}
           </h5>
           <div class="flex flex-wrap items-center gap-5">
             <button
+            v-for="i in timeSlots"
+            @click="state.time = i?.value"
+            :class="{'!bg-primary !text-white':state.time == i?.value }"
               class="border border-primary text-primary px-8 py-2 rounded-[30px]"
             >
-              8:00
+              {{ i?.time }}
             </button>
           </div>
         </div>
       </div>
     </div>
+
+   <Terms :isOpen="isOpen"></Terms>
+   <Policy :isOpen="isOpen2"></Policy>
   </div>
 </template>
 <script setup lang="ts">
@@ -247,15 +281,34 @@ const localePath = useLocalePath();
 let min = ref("");
 let max = ref("");
 const cities = ref([]);
+const isOpen = ref(false)
+const isOpen2 = ref(false)
+let maintenance_types = ref([
+{
+  value:"Periodic Maintenance",
+  name: t('maint1')
+},
+{
+  value:"Guarantee",
+  name: t('maint2')
+},
+{
+  value:"Plumbing And Painting",
+  name: t('maint3')
+},
+{
+  value:"Other",
+  name: t('other')
+},
+]);
 let city = ref();
 const branches = ref([]);
 let branch = ref();
+let maintenance_type = ref();
 let selectedDate = ref(new Date());
 let store = useGeneralStore();
 const schema = object({
   email: string().email(t("Invalidemail")).required(t("Required")),
-  message: string().required(t("Required")),
-  title: string().required(t("Required")),
   name: string().required(t("Required")),
   terms_and_privacy: string().required(t("Required")),
   phone: string().required(t("Required")),
@@ -268,42 +321,23 @@ const schema = object({
   maintenance_type: string().required(t("Required")),
 });
 
-const daysOfWeek = [
-  "sunday",
-  "monday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-];
 
-// Map days to their corresponding numeric values (0 = Sunday, 6 = Saturday)
-const allowedDays = daysOfWeek.map((day) =>
-  [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-  ].indexOf(day)
-);
-
-// Function to check if a date is allowed
-const isDateAllowed = (date: any) => allowedDays.includes(getDay(date));
-
+const checkTime = ref(true);
+const timeSlots = ref<any[]>([]);
 const brands_models = ref<Models[]>([]);
 const fetchModels = (selected: { id: number }) => {
   let filter = store.brandsWithModles.find((ele) => ele.id === selected.id);
   brands_models.value = filter?.parent_models ?? [];
 };
 const fetchCities = (selected: { id: number }) => {
+  branches.value = [];
+  branch.value = undefined;
   let filter = cities.value.find((ele) => ele?.id === selected.id);
   branches.value = filter?.branches ?? [];
 };
 
 const brand = ref();
+const model = ref();
 type Schema = InferType<typeof schema>;
 const state = ref({
   name: "",
@@ -331,12 +365,18 @@ watch(
     }
   }
 );
-watch([() => city.value, () => branch.value], ([val, val2]) => {
+watch([() => city.value, () => branch.value , ()=> model.value , ()=> maintenance_type.value], ([val, val2 , val3 , val4]) => {
   if (val) {
     state.value.city_id = val?.id;
   }
   if (val2) {
     state.value.branch_id = val2?.id;
+  }
+  if(val3){
+    state.value.model_id = val3?.id;
+  }
+  if(val4){
+    state.value.maintenance_type = val4?.value 
   }
 });
 watch(
@@ -358,12 +398,20 @@ const getAppointment = async () => {
   }
 };
 const getTimeSlots = async () => {
-  let response = await useApi().get(`time-slots`, {
+  checkTime.value = false;
+  state.value.date = format(selectedDate.value, "yyyy-MM-dd");
+  let response = await useApi().get<any[]>(`time-slots`, {
     params: {
-      date: selectedDate.value,
-      branch_id: state.value.branch_id?.id,
+      date: format(selectedDate.value, "yyyy-MM-dd") ,
+      branch_id: branch.value?.id,
     },
   });
+if(response.status === 200){
+  timeSlots.value = response.data;
+  if(timeSlots.value.length >= 1){
+    state.value.time = timeSlots.value[0]?.value
+  }
+}
 };
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   form.value!.clear();
@@ -372,7 +420,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     pendingBtn.value = true;
     let formData = new FormData();
     formData.append("name", state.value.name);
-    //   formData.append("branch_id", state.value.branch_id?.id);
+    formData.append("branch_id", state.value.branch_id);
     formData.append("brand_id", state.value.brand_id);
     formData.append("city_id", state.value.city_id);
     formData.append("date", state.value.date);
@@ -388,7 +436,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     formData.append("terms_and_privacy", state.value.terms_and_privacy || "");
     formData.append("time", state.value.time);
     const response = await useApi().post("make-appointment", formData);
-    if (response.status === 201) {
+    if (response.status === 200) {
       pendingBtn.value = false;
 
       router.push(localePath("/thank-you"));
@@ -427,25 +475,5 @@ onMounted(() => {
 });
 </script>
 <style lang="scss">
-.dp__calendar_header {
-  gap: 22px;
-  background-color: #1b395f;
-  color: #fff;
-  padding: 0px 5px;
-  border-radius: 8px;
-  .dp__calendar_header_item {
-    font-size: 15px;
-  }
-}
-.dp__calendar_header_separator {
-  display: none;
-}
-@media (max-width: 770px) {
-  .dp__calendar_header {
-    gap: 10px;
-  }
-  .dp__calendar_header_item {
-    font-size: 13px !important;
-  }
-}
+
 </style>

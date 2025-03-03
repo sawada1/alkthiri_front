@@ -2,7 +2,9 @@
     <div class="bg-white shadow-shadow1 py-7">
         <div class="container navbar-container flex items-center justify-between">
             <div class="flex items-center gap-10">
+              <nuxt-link :to="localePath('/')">
                 <NuxtImg src="/images/logo.svg" width="140" alt="logo" loading="lazy"/>
+              </nuxt-link>
                 <div class="links xl:flex lg:flex hidden  items-center gap-4">
                     <div class="nav-item">
                         <nuxt-link :to="localePath('/')" class="nav-link relative text-tw-grey" >{{ $t("home")
