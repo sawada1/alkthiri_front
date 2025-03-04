@@ -5,7 +5,7 @@
          <div v-for="item in store.banksData" class="shadow-shadow1 rounded-[16px] p-4">
            <h4 class="text-primary text-[18px] text-center mb-3 font-bold"> {{ item.name }} </h4>
            <div class="px-2 h-[150px]  w-full border-grey border-[2px] rounded-[8px]">
-           <NuxtImg :src="item.image" class="h-full object-contain"></NuxtImg>
+           <NuxtImg :src="item.image" placeholder="/images/placeholder.png" class="h-full object-contain"></NuxtImg>
            </div>
            <div class="details-accounts bg-grey p-2 rounded-[8px] flex flex-col gap-3 mt-4">
              <div class="flex items-center justify-between">

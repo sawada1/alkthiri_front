@@ -18,6 +18,7 @@ export default defineNuxtConfig({
   // vite: {
   //   cacheDir: false
   // },
+  plugins:["~/plugins/vue3-slider.client"],
   nitro: {
     minify: true,
     routeRules: {

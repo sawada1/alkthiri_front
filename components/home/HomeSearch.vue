@@ -87,9 +87,9 @@ const selectedModel = ref();
 
 const goToBrandPageSearch = () => {
   const queryParams = {
-    id: selectedBrand.value.id,
-    type: selectedType.value.value,
-    model: selectedModel.value.id,
+    id: selectedBrand.value?.id,
+    type: selectedType.value?.value,
+    model: selectedModel.value?.id,
   };
   const url = "/cars";
   const updatedRoute = {

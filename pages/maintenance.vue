@@ -472,6 +472,8 @@ async function onError(event: FormErrorEvent) {
 let pendingBtn = ref(false);
 onMounted(() => {
   getAppointment();
+  brands.value = store.brandsWithModles;
+  brands.value.push({ id: "another", name: t("another") });
 });
 </script>
 <style lang="scss">

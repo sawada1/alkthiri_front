@@ -3,8 +3,8 @@
     <div v-if="store.generalData" class="">
         
         <div class="flex flex-col xl:flex-row lg:flex-row gap-10">
-            <NuxtImg v-if="locale == 'ar'" src="/images/aboutUs2.png" class="w-[600px]" loading="lazy" alt="about image"></NuxtImg>
-            <NuxtImg v-if="locale == 'en'" src="/images/aboutUs.png" class="w-[600px]" loading="lazy" alt="about image"></NuxtImg>
+            <NuxtImg v-if="locale == 'ar'" src="/images/aboutUs2.png" placeholder="/images/placeholder.png" class="w-[600px]" loading="lazy" alt="about image"></NuxtImg>
+            <NuxtImg v-if="locale == 'en'" src="/images/aboutUs.png" placeholder="/images/placeholder.png" class="w-[600px]" loading="lazy" alt="about image"></NuxtImg>
 
             <div class="flex flex-col gap-3 xl:px-0 lg:px-0 px-5">
              <h1 class="font-bold headText about-us text-primary  xl:text-[42px] lg:text-[42px] text-[32px]" :data-about-us="$t('NOW MORE ABOUT US')"> {{ $t('WELCOME TO AL KATIRI MOTORS') }} </h1>
