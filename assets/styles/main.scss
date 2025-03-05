@@ -112,6 +112,13 @@ body {
   width:100px;
 }
 
+.vue-slider-process {
+  background-color: #1b395f !important;
+}
+.vue-slider-dot-tooltip {
+  display: none;
+}
+
 .dp__calendar_header {
   gap: 22px;
   background-color: #1b395f;
@@ -150,7 +157,9 @@ swiper-container::part(bullet-active) {
 .newsSwiper::part(container){
   padding-bottom: 100px;
   padding-top: 80px;
-  
+}
+.newsSwiper.car::part(container){
+    padding-bottom: 40px;
 }
 .newsSwiper{
   swiper-slide{
@@ -165,7 +174,9 @@ swiper-container::part(bullet-active) {
 @media(max-width:760px){
   swiper-container::part(container){
     padding-bottom: 60px;
-  
+  }
+  .priceSwiper::part(container){
+    padding-bottom: 0px;
   }
   .newsSwiper::part(container){
   padding-bottom: 30px;

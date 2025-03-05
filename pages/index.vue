@@ -22,13 +22,6 @@ const { t } = useI18n();
 let checkLoader = ref(true);
 
 onMounted(async() => {
-  const offersRes = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json() as { id: string }[];
-        // const blogsRes = await axios.get('https://yourapi.com/blogs');
-        // const categoriesRes = await axios.get('https://yourapi.com/categories');
-        console.log(offersRes);
-        
-        const offerRoutes = offersRes.map((offer) => `/offers/${offer.id}`);
-        console.log(offerRoutes);
         
 });
 

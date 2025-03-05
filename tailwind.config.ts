@@ -49,6 +49,7 @@ export default <Partial<Config>>{
       boxShadow: {
         shadow1: "0px 5px 44px #0000001A",
         shadow2: "0px 5px 15px #1B395F6E",
+        shadow3: "0 3px 6px rgba(0,0,0,.161)",
       },
     },
   },

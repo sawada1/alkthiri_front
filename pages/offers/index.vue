@@ -8,6 +8,7 @@
         </nuxt-link>
        </div>
 
+
        <loader v-if="store.loading"></loader>
     </div>
 </template>

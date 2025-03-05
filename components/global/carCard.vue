@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col xl:gap-4 lg:gap-4 gap-2 items-center">
+    <nuxt-link :to="localePath(`/cars/${car?.id}`)" class="flex flex-col xl:gap-4 lg:gap-4 gap-2 items-center">
               <NuxtImg
                 :src="car.main_image ||car?.model_image"
                 placeholder="/images/placeholder.png"
@@ -7,12 +7,14 @@
                 :alt="car.name"
                 loading="lazy"
               ></NuxtImg>
-              <span class="text-[16px] text-center text-primary font-semibold">
+              <span class="xl:text-[16px] lg:text-[16px] text-[14px] line-clamp-2 text-center text-primary font-semibold">
                 {{ car.name || car?.model_name }}
               </span>
-            </div>
+            </nuxt-link>
 </template>
 <script setup>
+const localePath = useLocalePath();
+
 let props = defineProps({
     car:{
         required: true,
