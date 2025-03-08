@@ -11,7 +11,7 @@
                 loading="lazy"
               />
               <span class="text-[#6F6F6E]">{{ $t("Model Year") }}</span>
-              <p class="font-bold text-[14px]">dsds</p>
+              <p class="font-bold text-[14px]"> {{ store.CarDetails?.year }} </p>
             </div>
           </div>
           <div
@@ -25,7 +25,7 @@
                 loading="lazy"
               />
               <span class="text-[#6F6F6E]">{{ $t("Engine") }}</span>
-              <p class="font-bold text-[14px]">dsds</p>
+              <p class="font-bold text-[14px]"> {{ store.CarDetails?.engine_type }} </p>
             </div>
           </div>
           <div
@@ -39,7 +39,7 @@
                 loading="lazy"
               />
               <span class="text-[#6F6F6E]">{{ $t("Kilometers") }}</span>
-              <p class="font-bold text-[14px]">dsds</p>
+              <p class="font-bold text-[14px]"> {{ store.CarDetails?.maximum_force }} </p>
             </div>
           </div>
           <div
@@ -53,7 +53,7 @@
                 loading="lazy"
               />
               <span class="text-[#6F6F6E]">{{ $t("Transmission") }}</span>
-              <p class="font-bold text-[14px]">dsds</p>
+              <p class="font-bold text-[14px]"> {{ store.CarDetails?.motion_vector }} </p>
             </div>
           </div>
           <div
@@ -67,7 +67,7 @@
                 loading="lazy"
               />
               <span class="text-[#6F6F6E]">{{ $t("Number Of Doors") }}</span>
-              <p class="font-bold">dsds</p>
+              <p class="font-bold"> {{ store.CarDetails?.seats_number }} </p>
             </div>
           </div>
           <div
@@ -81,7 +81,7 @@
                 loading="lazy"
               />
               <span class="text-[#6F6F6E]">{{ $t("Seats") }}</span>
-              <p class="font-bold text-[14px]">dsd</p>
+              <p class="font-bold text-[14px]"> {{ store.CarDetails?.upholstered_seats }} </p>
             </div>
           </div>
           <div
@@ -95,7 +95,7 @@
                 loading="lazy"
               />
               <span class="text-[#6F6F6E]">{{ $t("Transmission") }}</span>
-              <p class="font-bold text-[14px]">dsds</p>
+              <p class="font-bold text-[14px]"> {{ store.CarDetails?.traction_type }} </p>
             </div>
           </div>
           <div
@@ -109,13 +109,14 @@
                 loading="lazy"
               />
               <span class="text-[#6F6F6E]">{{ $t("Fuel Type") }}</span>
-              <p class="font-bold text-[14px]">dsds</p>
+              <p class="font-bold text-[14px]"> {{ store.CarDetails?.fuel_consumption }} </p>
             </div>
           </div>
         </div>
 </template>
 <script setup>
-
+import {useCarStore} from '@/stores/car';
+let store = useCarStore();
 </script>
 <style lang="">
     

@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link :to="localePath(`/cars/${car?.id}`)" class="flex flex-col xl:gap-4 lg:gap-4 gap-2 items-center">
+    <nuxt-link :to="localePath({path:`/cars/${car?.model_id}`, query:{car_id: car?.id , year:car?.year}})" class="flex flex-col xl:gap-4 lg:gap-4 gap-2 items-center">
               <NuxtImg
                 :src="car.main_image ||car?.model_image"
                 placeholder="/images/placeholder.png"
@@ -14,7 +14,7 @@
 </template>
 <script setup>
 const localePath = useLocalePath();
-
+let router = useRouter();
 let props = defineProps({
     car:{
         required: true,
@@ -23,7 +23,25 @@ let props = defineProps({
             name:''
         }
     }
-})
+});
+
+const goToCarPage = (id, model_id) => {
+  const queryParams = {
+    model_id: model_id,
+    // name: name,
+  }
+  let url = `/cars/${id}`
+  
+  const updatedRoute = {
+    path: url,
+    query: {
+      ...queryParams,
+    },
+  };
+
+  const fullLocalePath = localePath(updatedRoute);
+  router.push(fullLocalePath);
+}
 </script>
 <style lang="">
     

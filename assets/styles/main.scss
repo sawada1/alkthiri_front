@@ -256,6 +256,11 @@ html[dir="ltr"]{
         @include textAnimated(data-faq, 60px, -60%, 0px, #1b395f);
       }
     }
+    &.purchase{
+      &::before{
+        @include textAnimated(data-purchase, 60px, -60%, 0px, #1b395f);
+      }
+    }
   }
 }
 
@@ -295,6 +300,11 @@ html[dir="ltr"]{
       &.faq{
         &::before{
           @include textAnimated(data-faq, 40px, -30%, 0px, #1b395f);
+        }
+      }
+      &.purchase{
+        &::before{
+          @include textAnimated(data-purchase, 30px, -30%, 0px, #1b395f);
         }
       }
     }
