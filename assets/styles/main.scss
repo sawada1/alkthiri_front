@@ -112,6 +112,15 @@ body {
   width:100px;
 }
 
+input::-webkit-file-upload-button{
+  background-color: transparent;
+  border: none;
+  color:#1b395f;
+  padding: 0px 10px;
+  border-radius: 15px;
+  cursor: pointer;
+ 
+}
 .vue-slider-process {
   background-color: #1b395f !important;
 }

@@ -140,16 +140,16 @@
                 <UCheckbox color="primary" id="checkInp" v-model="state.terms_and_privacy" />
                 <label for="checkInp">
                   {{ $t("I have read and unconditionally agree to the") }}
-                  <nuxt-link :to="$localePath('/terms')" class="text-primary underline">
+                  <span @click="isOpen = !isOpen"  class="text-primary cursor-pointer underline">
                     {{ $t("Term And Conditions") }}
 
-                  </nuxt-link>
+                  </span>
                 
                     {{ $t("and") }}
-                    <nuxt-link :to="$localePath('/policy')" class="text-primary underline">
+                    <span @click="isOpen2 = !isOpen2" class="text-primary cursor-pointer underline">
                     {{ $t("Privacy Policy") }}
 
-                  </nuxt-link>
+                  </span>
                
                 </label>
               </div>
@@ -164,6 +164,8 @@
       </div>
     </div>
   </div>
+  <Terms :isOpen="isOpen"></Terms>
+  <Policy :isOpen="isOpen2"></Policy>
   <!-- <Loader v-if="store.loadingPage"></Loader> -->
 </template>
 <script setup lang="ts">
@@ -183,6 +185,8 @@ const schema = object({
   phone: string().required(t('Required')),
 })
 
+let isOpen = ref(false);
+let isOpen2 = ref(false);
 type Schema = InferType<typeof schema>
 let pendingBtn = ref(false);
 const state = reactive({

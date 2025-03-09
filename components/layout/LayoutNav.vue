@@ -47,12 +47,9 @@
             <div class="actions xl:flex lg:flex hidden items-center gap-10">
                 <div class="flex items-center gap-5">
                     <div>
-                        <nuxt-link v-if="locale == 'en'" :to="switchLocalePath('ar')">
-                           <NuxtImg src="/images/ar.svg" alt="ar" loading="lazy" width="30" /> 
-                        </nuxt-link>
-                        <nuxt-link v-if="locale == 'ar'" :to="switchLocalePath('en')">
-                           <NuxtImg src="/images/en.svg" alt="en" loading="lazy" width="30" /> 
-           
+                        <nuxt-link  :to="switchLocalePath('ar')">
+                           <NuxtImg v-if="locale == 'en'" src="/images/ar.svg" alt="ar" loading="lazy" width="30" /> 
+                           <NuxtImg v-else src="/images/en.svg" alt="ar" loading="lazy" width="30" /> 
                         </nuxt-link>
                     </div>
                     <button id="searchLabelIcon3" aria-label="search">
@@ -148,6 +145,19 @@ const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
 const isOpen = ref(false)
 
+const changeLang = async () => {
+  locale.value = locale.value === "en" ? "ar" : "en";
+  useHead({
+      htmlAttrs: {
+        lang: locale.value == 'en' ? "en" : 'ar',
+        dir: locale.value == 'en' ? "ltr" : 'rtl',
+      },
+    });
+    setLocale(locale.value == 'en' ? 'en' : 'ar');
+  const query = useRoute().query;
+  await navigateTo(localePath({ path: useRoute().path, query: query }));
+
+};
 watch(()=>locale.value , (val)=>{
  if(val){
   useHead({

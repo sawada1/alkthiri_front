@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen">
-        <div class="container mt-16">
+        <div class="container my-16">
 
             <h1 class="headText font-bold purchase mb-10 text-primary xl:text-[42px] lg:text-[42px] text-[32px]" :data-purchase="$t('FIND WHAT YOU NEED')"> {{ $t('PURCHASE ORDER') }} </h1>
             <div class="grid xl:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -28,6 +28,9 @@ let model_id = route.query.model_id;
 let color_id = route.query.color_id;
 let car_id = route.query.id;
 
+onMounted(() => {
+   store.getPurchaseData(); 
+});
 </script>
 <style lang="scss">
  .activePurchaseBtn{

@@ -51,7 +51,18 @@ export interface ApiResponse<T> {
     name: string;
     image: string;
     owner_name: string;
-    id: number;
+    id: string | number;
+  }
+  export interface GeneralIdName{
+    name: string;
+    id: string | number;
+  }
+
+  export interface PurchaseDataType{
+    banks: Banks[];
+    cities: GeneralIdName[];
+    services: Services[];
+    funding_organizations: GeneralIdName[];
   }
 
   export interface Branches{
