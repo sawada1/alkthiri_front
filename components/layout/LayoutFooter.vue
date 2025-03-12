@@ -57,20 +57,25 @@
             <nuxt-link :to="localePath('/careers')" class="text-white">
               <span>{{ $t("careers") }}</span>
             </nuxt-link>
-            <span
+            <button @click="isOpen = true">
+              <span
               type="button"
               data-bs-toggle="modal"
               class="text-white"
               data-bs-target="#termsModal"
               >{{ $t("Term And Conditions") }}</span
-            >
-            <span
-              type="button"
-              data-bs-toggle="modal"
-              class="text-white"
-              data-bs-target="#privacyModal"
-              >{{ $t("Privacy Policy") }}</span
-            >
+              >
+              
+            </button>
+            <button @click="isOpen2 = true">
+              <span
+                type="button"
+                data-bs-toggle="modal"
+                class="text-white"
+                data-bs-target="#privacyModal"
+                >{{ $t("Privacy Policy") }}</span
+              >
+            </button>
           </div>
         </div>
 
@@ -176,11 +181,16 @@
         <Icon name="meteor-icons:arrow-up" class="bg-white w-[27px] h-[27px]" width="24" height="24" />
     </button>
   </div>
+
+  <Terms :isOpen="isOpen"></Terms>
+  <Policy :isOpen="isOpen2"></Policy>
 </template>
 <script setup lang="ts">
 import { useGeneralStore } from "~/stores/general";
 let store = useGeneralStore();
 const localePath = useLocalePath();
+const isOpen = ref(false);
+const isOpen2 = ref(false);
 const scrollUp = () => {
   if (process.client) {
     window.scrollTo({

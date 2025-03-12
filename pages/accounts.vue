@@ -4,7 +4,7 @@
         <div class="grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 mt-10 gap-5">
          <div v-for="item in store.banksData" class="shadow-shadow1 rounded-[16px] p-4">
            <h4 class="text-primary text-[18px] text-center mb-3 font-bold"> {{ item.name }} </h4>
-           <div class="px-2 h-[150px]  w-full border-grey border-[2px] rounded-[8px]">
+           <div class="px-2 h-[150px] flex items-center justify-center  w-full border-grey border-[2px] rounded-[8px]">
            <NuxtImg :src="item.image" placeholder="/images/placeholder.png" class="h-full object-contain"></NuxtImg>
            </div>
            <div class="details-accounts bg-grey p-2 rounded-[8px] flex flex-col gap-3 mt-4">

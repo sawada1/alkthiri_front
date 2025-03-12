@@ -4,12 +4,50 @@
 
             <h1 class="headText font-bold purchase mb-10 text-primary xl:text-[42px] lg:text-[42px] text-[32px]" :data-purchase="$t('FIND WHAT YOU NEED')"> {{ $t('PURCHASE ORDER') }} </h1>
             <div class="grid xl:grid-cols-2 lg:grid-cols-2 gap-8">
-               <div>dsdsd</div>
+                <div class=" relative">
+                    <div v-if="store.checkStatus == 1" class="sticky top-5"> dsds</div>
+                    <div v-if="store.checkStatus == 2" class="sticky top-5">
+                      <div class="bg-[#f2f2f2] rounded-xl p-3 text-primary">
+                         <span> {{ $t('Or please fill the form below: You will receive a reply within a maximum of 24 hours.') }} </span>
+                      </div>
+                      <p class="mt-4">{{ $t("text purchase") }}</p>
+                      <div class="flex flex-col gap-3 mt-4">
+                         <div class="flex items-center gap-3">
+                             <UIcon name="material-symbols:call-sharp" class="w-5 h-5 text-primary-500" />
+                             <h4 class="font-bold"> 
+                                 {{ $t("mobile number") }} :
+                                 <span class="font-[400]"> {{ store2.generalData?.phone }}</span>   
+                             </h4>
+                         </div>
+                         <div class="flex items-center gap-3">
+                             <UIcon name="material-symbols-light:mail" class="w-5 h-5 text-primary-500" />
+                             <h4 class="font-bold"> 
+                                 {{ $t("email") }} :
+                                 <span class="font-[400]"> {{ store2.generalData?.email }}</span>   
+                             </h4>
+                         </div>
+                         <div class="flex items-center gap-3">
+                             <UIcon name="mage:whatsapp" class="w-5 h-5 text-primary-500" />
+                             <h4 class="font-bold"> 
+                                 {{ $t("Whatsapp") }} :
+                                 <a
+                         target="_blank"
+                         :href="`https://wa.me/${store2.generalData?.whatsapp}`"
+                         class="click font-normal"
+                         >{{ $t("click here") }}</a
+                       >  
+                             </h4>
+                         </div>
+                      </div>
+                    </div>
+
+
+                </div>
                <div class="bg-white shadow-shadow1 rounded-[16px] p-4">
                   <div class="flex items-center justify-center gap-9">
                      <button @click="store.checkStatus = 1" class="text-[#b0b0b0] text-[22px] border-b-[1px] relative " :class="{'activePurchaseBtn': store.checkStatus == 1}"> {{ $t('individuals') }} </button>
                      <div class="w-[12px] h-[12px] bg-tw-grey rounded-full"></div>
-                     <button @click="store.checkStatus = 2" class="text-[#b0b0b0] text-[22px] relative" :class="{'activePurchaseBtn': store.checkStatus == 2}"> {{ $t('corporate') }} </button>
+                     <button @click="store.checkStatus = 2" class="text-[#b0b0b0] text-[22px] border-b-[1px] relative" :class="{'activePurchaseBtn': store.checkStatus == 2}"> {{ $t('corporate') }} </button>
                   </div>
                   <div class="bg-tw-grey w-full h-[1px]"></div>
                    <OrderIndOrder v-if="store.checkStatus == 1" class="mt-10"></OrderIndOrder>
@@ -22,12 +60,13 @@
 </template>
 <script setup>
 import {useOrderStore} from '@/stores/order'
+import {useGeneralStore} from '@/stores/general';
 let store = useOrderStore();
 let route = useRoute();
 let model_id = route.query.model_id;
 let color_id = route.query.color_id;
 let car_id = route.query.id;
-
+let store2 = useGeneralStore();
 onMounted(() => {
    store.getPurchaseData(); 
 });
