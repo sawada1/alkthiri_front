@@ -18,11 +18,17 @@
 <script setup lang="ts">
 import { useHomeStore } from "@/stores/home";
 let store = useHomeStore();
-const { t } = useI18n();
+const { t , locale } = useI18n();
 let checkLoader = ref(true);
 
 onMounted(async() => {
-        
+     
+  
+  watch(()=>locale.value, () => {
+    store.fetchBrands();
+    store.fetchNews();
+    store.fetchCars();
+  });
 });
 
 useHead({

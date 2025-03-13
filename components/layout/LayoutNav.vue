@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white shadow-shadow1 py-7">
+    <div class="bg-white shadow-shadow1 py-7 sticky top-0 z-[55555555]">
         <div class="container navbar-container flex items-center justify-between">
             <div class="flex items-center gap-10">
               <nuxt-link :to="localePath('/')">
@@ -47,10 +47,10 @@
             <div class="actions xl:flex lg:flex hidden items-center gap-10">
                 <div class="flex items-center gap-5">
                     <div>
-                        <nuxt-link  :to="switchLocalePath('ar')">
+                        <button @click="changeLang()">
                            <NuxtImg v-if="locale == 'en'" src="/images/ar.svg" alt="ar" loading="lazy" width="30" /> 
                            <NuxtImg v-else src="/images/en.svg" alt="ar" loading="lazy" width="30" /> 
-                        </nuxt-link>
+                        </button>
                     </div>
                     <button id="searchLabelIcon3" aria-label="search">
                     <SvgSearch></SvgSearch>
@@ -143,6 +143,7 @@
 const { locales, locale, setLocale } = useI18n();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
+
 const isOpen = ref(false)
 
 const changeLang = async () => {

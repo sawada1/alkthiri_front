@@ -13,6 +13,10 @@
 const i18n = useI18n();
 const langCookie = useCookie("i18n_redirected");
 
+  
+watch(()=>i18n.locale.value, () => {
+    store.fetchGeneral();
+  });
 onMounted(() => {
   
   if (!langCookie.value) {

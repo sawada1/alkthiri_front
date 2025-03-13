@@ -270,6 +270,11 @@ html[dir="ltr"]{
         @include textAnimated(data-purchase, 60px, -60%, 0px, #1b395f);
       }
     }
+    &.find{
+      &::before{
+        @include textAnimated(data-find, 45px, -70%, 0px, #1b395f);
+      }
+    }
   }
 }
 
