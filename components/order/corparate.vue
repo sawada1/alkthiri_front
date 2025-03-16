@@ -21,14 +21,14 @@
     @error="onError"
   >
 
-  <div v-for="(car, index) in state.formCar" :key="index" class="flex justify-betwee gap-4 items-center mt-8">
+  <div v-for="(car, index) in state.formCar" :key="index" class="flex justify-betwee w-full  gap-4 items-center mt-8">
     <!-- Car Name Input -->
-    <UFormGroup :name="`formCar[${index}].car_name`">
-      <UInput v-model="car.car_name"  />
+    <UFormGroup :name="`formCar[${index}].car_name`" class="w-[50%]" >
+      <UInput v-model="car.car_name" />
     </UFormGroup>
 
     <!-- Count Input -->
-    <UFormGroup :name="`formCar[${index}].count`">
+    <UFormGroup :name="`formCar[${index}].count`" class="w-[50%]" >
       <UInput
         v-model.number="car.count"
         type="number"

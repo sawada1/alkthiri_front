@@ -7,7 +7,7 @@
       {{ $t("latest news") }}
     </h4>
     <ClientOnly>
-      <swiper-container class="newsSwiper" ref="containerRef2">
+      <swiper-container :dir="locale == 'ar' ? 'rtl' : 'ltr'" class="newsSwiper" ref="containerRef2">
         <swiper-slide
         v-for="item in storeHome.newsArray"
         class="bg-white shadow-shadow1 p-[12px] rounded-[16px]">
@@ -87,6 +87,10 @@ const swiper = useSwiper(containerRef2, {
     },
   },
 });
+
+watch(()=> locale.value , (val)=>{
+  storeHome.fetchNews();
+})
 
 onMounted(() => {
   if(storeHome.newsArray.length == 0){

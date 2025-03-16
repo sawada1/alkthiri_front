@@ -8,9 +8,11 @@
           {{ $t("Maintenance Appointment") }} <br />
           {{ $t("now") }}
         </h2>
+        <nuxt-link :to="localePath('/maintenance')" class="z-10">
         <button id="bookNow2" aria-label="book" class="bg-white text-primary rounded-xl font-bold w-fit px-8 py-2">
             {{ $t("book now") }}
         </button>
+        </nuxt-link>
          </div>
          <NuxtImg class="absolute top-[0%] w-full left-0 rtl:scale-x-[-1] hidden xl:block lg:block" loading="lazy" src="/images/sub.png" alt="sub1"></NuxtImg>
          <NuxtImg class="absolute top-[-50%] w-[720px] h-[375px]  rtl:left-0 ltr:right-0 ltr:scale-x-[-1] hidden xl:block lg:block" loading="lazy" alt="sub2" src="/images/sub2ar.png"></NuxtImg>
@@ -18,7 +20,8 @@
         </div>
     </div>
 </template>
-<script>
+<script setup>
+const localePath = useLocalePath();
 
 
 </script>

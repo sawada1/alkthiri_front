@@ -10,6 +10,7 @@
           <NuxtImg
             :src="slide.image"
             class="w-[50px] h-[50px]"
+            placeholder="/images/placeholder.png"
             loading="lazy"
           ></NuxtImg>
           <span
@@ -102,7 +103,7 @@
           {{ $t("explore more") }}
           <Icon
             name="tabler:chevron-left"
-            class="bg-white ltr:translate-x-[-1] w-6 h-6"
+            class="bg-white ltr:scale-x-[-1] w-6 h-6"
             width="24"
             height="24"
           />
@@ -120,6 +121,7 @@ const containerRef = ref(null);
 const containerRef2 = ref(null);
 const localePath = useLocalePath();
 let router = useRouter();
+const i18n = useI18n();
 const swiper = useSwiper(containerRef, {
   spaceBetween: 10,
   slidesPerView: 3,
@@ -187,6 +189,10 @@ const goToBrandPageById = () => {
   const fullLocalePath = localePath(updatedRoute);
   router.push(fullLocalePath);
     };
+
+    watch(()=>i18n.locale.value, () => {
+    store.fetchBrands();
+  });
 onMounted(() => {
   if (store.brandArray.length == 0) {
     store.fetchBrands(); 

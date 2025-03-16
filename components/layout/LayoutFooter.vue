@@ -57,7 +57,7 @@
             <nuxt-link :to="localePath('/careers')" class="text-white">
               <span>{{ $t("careers") }}</span>
             </nuxt-link>
-            <button @click="isOpen = true">
+            <button @click="isOpen = !isOpen">
               <span
               type="button"
               data-bs-toggle="modal"
@@ -67,7 +67,7 @@
               >
               
             </button>
-            <button @click="isOpen2 = true">
+            <button @click="isOpen2 = !isOpen2">
               <span
                 type="button"
                 data-bs-toggle="modal"

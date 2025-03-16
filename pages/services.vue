@@ -7,13 +7,13 @@
            <p class="font-bold xl:w-[700px] xl:text-black lg:text-black text-white  lg:w-[700px] mt-4"> {{ $t('services text') }} </p>
         </div> 
          </div>
-         <NuxtImg src="/images/mainServices.png"  class="absolute hidden xl:block lg:block top-0 -z-20 w-full object-cover h-full scale-x-[-1]"></NuxtImg>
+         <NuxtImg src="/images/mainServices.png" placeholder="/images/placeholder.png"  class="absolute hidden xl:block lg:block top-0 -z-20 w-full object-cover h-full scale-x-[-1]"></NuxtImg>
         </div>
 
         <div class="flex flex-col xl:gap-0 lg:gap-0 gap- services-container">
          <div v-for="item , index in store.servicesData" class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2  xl:gap-0 lg:gap-0 gap-5" :class="{'active':index % 2 == 0 ? true : false}">
           <div class="w-full">
-           <NuxtImg :src="item.image" placeholder="/images/placeholder.png" class="w-full object-cover xl:h-[500px] lg:h-[500px] h-[200px]"></NuxtImg>
+           <NuxtImg :src="item.image"  placeholder="/images/placeholder.png" class="w-full object-cover xl:h-[500px] lg:h-[500px] h-[200px]"></NuxtImg>
           </div>
 
           <div class="flex flex-col gap-3 xl:pt-10 lg:pt-10 pt-5 pb-5 px-10 text-container">

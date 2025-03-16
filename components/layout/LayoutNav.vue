@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-white shadow-shadow1 py-7 sticky top-0 z-[55555555]">
-        <div class="container navbar-container flex items-center justify-between">
+    <div class="bg-white shadow-shadow1 py-7 sticky top-0 z-[9999999]">
+        <div class="container navbar-container relative flex items-center justify-between">
             <div class="flex items-center gap-10">
               <nuxt-link :to="localePath('/')">
                 <NuxtImg src="/images/logo.svg" width="140" alt="logo" loading="lazy"/>
@@ -47,12 +47,15 @@
             <div class="actions xl:flex lg:flex hidden items-center gap-10">
                 <div class="flex items-center gap-5">
                     <div>
-                        <button @click="changeLang()">
-                           <NuxtImg v-if="locale == 'en'" src="/images/ar.svg" alt="ar" loading="lazy" width="30" /> 
-                           <NuxtImg v-else src="/images/en.svg" alt="ar" loading="lazy" width="30" /> 
-                        </button>
+                        <nuxt-link v-if="locale == 'en'" :to="switchLocalePath('ar')">
+                           <NuxtImg src="/images/ar.svg" alt="ar" width="30" loading="lazy" /> 
+                        </nuxt-link>
+                        <nuxt-link v-if="locale == 'ar'" :to="switchLocalePath('en')">
+                           <NuxtImg src="/images/en.svg" alt="en" width="30" loading="lazy" /> 
+           
+                        </nuxt-link>
                     </div>
-                    <button id="searchLabelIcon3" aria-label="search">
+                    <button @click="clickSearch = !clickSearch" id="searchLabelIcon3" aria-label="search">
                     <SvgSearch></SvgSearch>
                     </button>
                 </div>
@@ -63,9 +66,12 @@
             <button id="toggleLabelIcon" aria-label="toggle" @click="isOpen = true" class="xl:hidden lg:hidden block">
                 <Icon name="flowbite:align-left-outline" color="" class="bg-tw-primary w-[35px] h-[35px]" width="40" height="40" />
             </button>
+            <div class="w-[400px] xl:block lg:block hidden absolute top-[170%] rtl:left-[240px] ltr:right-[240px] z-[55] rtl:translate-x-[-300%] transition-all duration-300 ltr:translate-x-[300%]" :class="{'!translate-x-0':clickSearch}">
+       <UInput size="xl" icon="i-lucide-search" v-model="searchWord"  @keyup.enter="goToBrandPageByName"></UInput>
+      </div>
         </div>
-        <USlideover side="top" v-model="isOpen" class="!max-height-fit">
-      <div class="p-4 bg-white shadow-shadow1">
+        <USlideover side="top" v-model="isOpen" class="!max-height-fit ">
+      <div class="p-4 bg-white relative shadow-shadow1">
         <UButton
           color="gray"
           variant="ghost"
@@ -135,30 +141,49 @@
                 </nuxt-link>
             </div>
         <Placeholder class="h-full" />
+      <div class="w-full absolute top-[100%] rtl:left-[0px]">
+       <UInput></UInput>
+      </div>
       </div>
     </USlideover>
     </div>
+    <div v-if="clickSearch" @click="clickSearch = false" class="overlaySearch fixed  top-0 right-0 left-0 w-screen h-screen z-[45]"></div>
+
 </template>
 <script setup lang="ts">
 const { locales, locale, setLocale } = useI18n();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
+const clickSearch = ref(false);
 
 const isOpen = ref(false)
 
-const changeLang = async () => {
-  locale.value = locale.value === "en" ? "ar" : "en";
-  useHead({
-      htmlAttrs: {
-        lang: locale.value == 'en' ? "en" : 'ar',
-        dir: locale.value == 'en' ? "ltr" : 'rtl',
-      },
-    });
-    setLocale(locale.value == 'en' ? 'en' : 'ar');
-  const query = useRoute().query;
-  await navigateTo(localePath({ path: useRoute().path, query: query }));
-
+let searchWord = ref("");
+const router = useRouter();
+const goToBrandPageByName = () => {
+  if (searchWord.value) {
+    const queryParams = {
+      name: searchWord.value,
+    };
+    const url = locale.value + "/cars";
+    router.push({ path: `/${url}`, query: queryParams });
+    searchWord.value = "";
+    clickSearch.value = false;
+  }
 };
+// const changeLang = async () => {
+//   locale.value = locale.value === "en" ? "ar" : "en";
+//   useHead({
+//       htmlAttrs: {
+//         lang: locale.value == 'en' ? "en" : 'ar',
+//         dir: locale.value == 'en' ? "ltr" : 'rtl',
+//       },
+//     });
+//     setLocale(locale.value == 'en' ? 'en' : 'ar');
+//   const query = useRoute().query;
+//   await navigateTo(localePath({ path: useRoute().path, query: query }));
+
+// };
 watch(()=>locale.value , (val)=>{
  if(val){
   useHead({

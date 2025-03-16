@@ -1,7 +1,7 @@
 <template>
     <div class="container min-h-screen my-10">
     <div v-if="store.offer">
-      <NuxtImg :src="store.offer.offer?.image" class="w-full rounded-[16px] xl:h-[800px] lg:h-[800px] h-[350px]" loading="lazy" :alt="store.offer.offer?.title"></NuxtImg>
+      <NuxtImg placeholder="/images/placeholder.png" :src="store.offer.offer?.image" class="w-full rounded-[16px] xl:h-[800px] lg:h-[800px] h-[350px]" loading="lazy" :alt="store.offer.offer?.title"></NuxtImg>
        <h1 class="text-primary my-10 font-bold xl:text-[32px] lg:text-[32px] text-[22px]"> {{ store.offer.offer?.title }} </h1>
        <p class="text-tw-grey" v-html="store.offer.offer?.description"></p>
        <div class="relative">
@@ -28,6 +28,8 @@ let store = useOffersStore();
 const localePath = useLocalePath();
 let route = useRoute();
 const containerRefOffer = ref(null);
+let {locale} = useI18n();
+
 const swiper = useSwiper(containerRefOffer, {
   spaceBetween: 10,
   autoplay: {
@@ -53,7 +55,9 @@ const swiper = useSwiper(containerRefOffer, {
   },
 });
 
-
+watch(()=> locale.value , (val)=>{
+  store.fetchOffer(route.params.id);
+})
 onMounted(()=>{
   store.fetchOffer(route.params.id);
 });

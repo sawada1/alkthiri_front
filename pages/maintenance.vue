@@ -196,20 +196,20 @@
               />
               <label for="checkInp">
                 {{ $t("I have read and unconditionally agree to the") }}
-                <button
-                   @click.stop="isOpen = true"
-                  class="text-primary underline"
+                <span
+                   @click.stop="isOpen = !isOpen"
+                  class="text-primary underline cursor-pointer"
                 >
                   {{ $t("Term And Conditions") }}
-                </button>
+                </span>
 
                 {{ $t("and") }}
-                <button
-                @click.stop="isOpen2 = true"
-                  class="text-primary underline"
+                <span
+                @click.stop="isOpen2 = !isOpen2"
+                  class="text-primary underline cursor-pointer"
                 >
                   {{ $t("Privacy Policy") }}
-                </button>
+                </span>
               </label>
             </div>
           </UFormGroup>
@@ -438,16 +438,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     const response = await useApi().post("make-appointment", formData);
     if (response.status === 200) {
       pendingBtn.value = false;
-
       router.push(localePath("/thank-you"));
-      //   Object.assign(state.value, {
-      //     message: "",
-      //     email: "",
-      //     title: "",
-      //     name: "",
-      //     phone: "",
-      //     terms_and_privacy: undefined
-      //   });
     }
   } catch (err: any) {
     pendingBtn.value = false;

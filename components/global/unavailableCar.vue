@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="grid xl:grid-cols-2 lg:grid-cols-2 grid-cols-1">
-      <div class="flex items-cente flex-col justify-center gap-4">
+      <div class="flex items-center text-center xl:items-start lg:items-start xl:text-start lg:text-start mb-6 xl:mb-0 lg:mb-0 flex-col justify-center gap-4">
         <h3
           class="font-bold text-primary xl:text-[28px] lg:text-[28px] text-[22px]"
         >
@@ -19,6 +19,7 @@
       <NuxtImg
         src="/images/notfound.svg"
         loading="lazy"
+        placeholder="/images/placeholder.png"
         alt="not found"
         class="xl:w-[600px] lg:w-[600px] w-full"
       ></NuxtImg>
@@ -81,22 +82,22 @@
           />
           <label for="checkInp">
             {{ $t("I have read and unconditionally agree to the") }}
-            <button
-            @click="isOpen = true"
+            <span
+            @click="isOpen = !isOpen"
               :to="$localePath('/terms')"
-              class="text-primary underline"
+              class="text-primary underline cursor-pointer"
             >
               {{ $t("Term And Conditions") }}
-            </button>
+            </span>
 
             {{ $t("and") }}
-            <button
-            @click="isOpen2 = true"
+            <span
+            @click="isOpen2 = !isOpen2"
               :to="$localePath('/policy')"
-              class="text-primary underline"
+              class="text-primary underline cursor-pointer"
             >
               {{ $t("Privacy Policy") }}
-            </button>
+            </span>
           </label>
         </div>
       </UFormGroup>

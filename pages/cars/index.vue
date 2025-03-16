@@ -8,7 +8,7 @@
                 <p class="text-[#6F6F6E] text-[18px] font-bold">
                   {{ $t("filter") }}
                 </p>
-                <button class="text-primary underline">{{ $t("reset") }}</button>
+                <button @click="resetFunc()" class="text-primary underline">{{ $t("reset") }}</button>
               </div>
               <h3 class="text-primary text-[20px] font-bold my-3">
                 {{ $t("pricee") }}
@@ -37,7 +37,7 @@
                <div  v-for="i in item.brands" class="flex items-center gap-2">
                   <UCheckbox color="primary" :id="`checkInp-${i?.id}`" :value="i?.id" v-model="brands" />
                   <label :for="`checkInp-${i?.id}`" class="flex items-center gap-1">
-                  <NuxtImg :src="i?.image" loading="lazy" width="40" height="40"></NuxtImg>
+                  <NuxtImg :src="i?.image" loading="lazy" placeholder="/images/placeholder.png" width="40" height="40"></NuxtImg>
                   <span class="text-[18px] text-primary font-bold"> {{ i?.name }}  </span>
                  
                   </label>
@@ -100,6 +100,7 @@
   let checkType = ref('sedan');
   let checkNotFound = ref(false);
   let route = useRoute();
+  let mainName = ref(route.query?.name ? route.query?.name : '')
   let modelsData = ref([]);
   let filterData = ref([
     {
@@ -144,6 +145,14 @@
           valuePrice.value[1] = result.data?.maxPrice;
       }
   }
+
+  const resetFunc = ()=>{
+    brands.value = [];
+    models.value = [];
+    valuePrice.value[0] =  minPrice.value;
+    valuePrice.value[1] =  maxPrice.value;
+    checkType.value = 'sedan'
+  }
   let cars = ref([]);
   const getCars = async()=> {
     pendingCars.value = true;
@@ -154,7 +163,7 @@
         min_price: valuePrice.value[0],
         max_price: valuePrice.value[1],
         models: models.value,
-        //   name: mainName.value,
+         name: mainName.value,
         type: checkType.value 
       }
     });
@@ -170,6 +179,19 @@
   watch(()=> brands.value , (val)=>{
     if(val){
         modelsData.value = brandsData.value.filter((ele)=> val.includes(ele.id)).map((ele)=> ele.parent_models).flat();
+    }
+  });
+
+  watch(()=> route.query?.name , (val)=>{
+    if(val){
+      mainName.value = val;
+      getCars();
+    }
+  });
+
+  watch([()=> brands.value , ()=> models.value , ()=> checkType.value], ([val1 , val2 , val3])=>{
+    if(val1 || val2 || val3){
+      mainName.value = '';
     }
   })
 

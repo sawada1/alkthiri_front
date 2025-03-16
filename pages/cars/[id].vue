@@ -98,7 +98,7 @@
 import {useCarStore} from '@/stores/car';
 let store = useCarStore();
 const containerRef3 = ref(null);
-const {locale} = useApi();
+const {locale} = useI18n();
 let checkCar = ref(0);
 
 
@@ -126,38 +126,10 @@ const swiper2 = useSwiper(containerRef3, {
 let route = useRoute();
 let car_id = route.query.car_id;
 let year = route.query.year;
-const goToPurchasePage = (id, color) => {
-      const queryParams = {
-        id: id,
-        model_id: model_id,
-        colorId: color,
-      };
 
-      const url = "/purchase";
-
-      const updatedRoute = {
-        path: url,
-        query: {
-          ...queryParams,
-        },
-      };
-      const fullLocalePath = localePath(updatedRoute);
-      router.push(fullLocalePath);
-    };
-
-const getCarData = async()=>{
-  let car = await  useApi().get(`/models/${route.params.id}`,{
-          params: {
-            year: year ? year : "",
-          },
-         
-        }
-      );
-}
-
-
-// getCarData();
-
+// watch(()=> locale.value , ()=>{
+//   store.fetchCarDetails(route.params.id , year);
+// })
 onMounted(() => {
 
   store.fetchCarDetails(route.params.id , year);
