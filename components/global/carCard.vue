@@ -1,7 +1,7 @@
 <template>
     <nuxt-link :to="localePath({path:`/cars/${car?.model_id}`, query:{car_id: car?.id , year:car?.year}})" class="flex flex-col xl:gap-4 lg:gap-4 gap-2 items-center">
               <NuxtImg
-                :src="car.main_image ||car?.model_image"
+                :src="carImage"
                 placeholder="/images/placeholder.png"
                 class="w-full xl:h-[200px] lg:h-[200px] h-[150px] object-contain"
                 :alt="car.name"
@@ -24,6 +24,9 @@ let props = defineProps({
         }
     }
 });
+
+const carImage = computed(() => props.car?.main_image || props.car?.model_image || "/images/placeholder.png");
+
 
 const goToCarPage = (id, model_id) => {
   const queryParams = {

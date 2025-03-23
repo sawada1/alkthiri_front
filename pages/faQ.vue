@@ -40,8 +40,21 @@
     </div>
 </template>
 <script setup>
+const { t, locale } = useI18n();
+
 import {useGeneralStore} from '@/stores/general';
 let store = useGeneralStore();
+
+useHead({
+      title: `${t('FREQUENTLY ASK QUESTION')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 
 onMounted(() => {
    store.fetchFaqs(); 

@@ -10,10 +10,19 @@
         </div>
     </div>
 </template>
-<script>
-export default {
-    
-}
+<script setup>
+const { t, locale } = useI18n();
+
+useHead({
+      title: `${t('thank page')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 </script>
 <style lang="">
     

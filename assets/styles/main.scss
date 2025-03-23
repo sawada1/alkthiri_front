@@ -216,6 +216,9 @@ swiper-container::part(bullet-active) {
   -webkit-text-stroke: 1px $color;
 }
 
+.fancybox__container{
+  z-index: 555555555555;
+}
 
 html[dir="ltr"]{
   .headText{

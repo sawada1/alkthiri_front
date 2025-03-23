@@ -5,7 +5,7 @@
             <h1 class="headText font-bold purchase mb-10 text-primary xl:text-[42px] lg:text-[42px] text-[32px]" :data-purchase="$t('FIND WHAT YOU NEED')"> {{ $t('PURCHASE ORDER') }} </h1>
             <div class="grid xl:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div class=" relative">
-                    <div v-if="store.checkStatus == 1" class="sticky top-5"> dsds</div>
+                    <div v-if="store.checkStatus == 1" class="sticky top-5"> <CarCard :car="chosenCar"></CarCard> </div>
                     <div v-if="store.checkStatus == 2" class="sticky top-5">
                       <div class="bg-[#f2f2f2] rounded-xl p-3 text-primary">
                          <span> {{ $t('Or please fill the form below: You will receive a reply within a maximum of 24 hours.') }} </span>
@@ -63,13 +63,34 @@ import {useOrderStore} from '@/stores/order'
 import {useGeneralStore} from '@/stores/general';
 let store = useOrderStore();
 let route = useRoute();
+const { t, locale } = useI18n();
+
 let model_id = route.query.model_id;
 let color_id = route.query.color_id;
 let car_id = route.query.id;
 let store2 = useGeneralStore();
+let chosenCar = ref();
+let getCar = async()=>{
+    let result = await useApi().get(`car-details/${car_id}`);
+    if(result.status == 200){
+        chosenCar.value = result.data?.data;
+    }
+}
 onMounted(() => {
-   store.getPurchaseData(); 
+   store.getPurchaseData();
+   getCar(); 
 });
+
+useHead({
+      title: `${t('PURCHASE ORDER')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 </script>
 <style lang="scss">
  .activePurchaseBtn{

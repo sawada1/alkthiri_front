@@ -25,7 +25,7 @@
            <span class="text-[#C0C0C0] text-[10px]"> {{ item.created_at }} </span>
           </div>
          </div>
-          <nuxt-link :to="localePath({path:`/news/${item.id}`})">
+          <nuxt-link class="news-link" id="news-link" :to="localePath({path:`/news/${item.id}`})">
             <button id="latestNews1" aria-label="news" class="flex items-center gap-1"> 
                <span class="font-bold text-primary">{{ $t("read more") }}</span>
                <Icon name="tabler:arrow-narrow-left" class="bg-primary ltr:scale-x-[-1] mt-1" width="24" height="24" />

@@ -25,6 +25,17 @@
 let route = useRoute();
 let newDetails = ref();
 let pending = ref(true);
+let {locale , t} = useI18n();
+useHead({
+      title: `${t('news')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 const getNew = async()=>{
  let result = await useApi().get(`/news/${route.params.id}`);
  if(result.status == 200){

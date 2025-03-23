@@ -17,7 +17,7 @@ import { useOffersStore } from "@/stores/offers";
 let store = useOffersStore();
 const localePath = useLocalePath();
 let route = useRoute(); 
-let {locale} = useI18n();
+let {locale , t} = useI18n();
 
 watch(()=> locale.value , (val)=>{
   store.fetchOffers();
@@ -27,6 +27,17 @@ onMounted(()=>{
      store.fetchOffers();
   }
 });
+
+useHead({
+      title: `${t('SPATIAL OFFERS')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 </script>
 <style lang="">
     

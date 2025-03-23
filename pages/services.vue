@@ -29,10 +29,22 @@
 <script setup>
 import {useGeneralStore} from '@/stores/general';
 let store = useGeneralStore();
+const { t, locale } = useI18n();
 
+useHead({
+      title: `${t('accessories')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 onMounted(() => {
    store.fetchServices(); 
 });
+
 </script>
 <style lang="scss">
 html[dir="rtl"]{

@@ -102,6 +102,7 @@
   let route = useRoute();
   let mainName = ref(route.query?.name ? route.query?.name : '')
   let modelsData = ref([]);
+  
   let filterData = ref([
     {
       name:t('cars'),
@@ -193,7 +194,18 @@
     if(val1 || val2 || val3){
       mainName.value = '';
     }
-  })
+  });
+
+useHead({
+      title: `${t('cars')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 
   onMounted(() => {
       getFilterData(); 

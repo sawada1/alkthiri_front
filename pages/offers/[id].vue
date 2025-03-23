@@ -28,8 +28,17 @@ let store = useOffersStore();
 const localePath = useLocalePath();
 let route = useRoute();
 const containerRefOffer = ref(null);
-let {locale} = useI18n();
-
+let {locale , t} = useI18n();
+useHead({
+      title: `${t('SPATIAL OFFERS')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 const swiper = useSwiper(containerRefOffer, {
   spaceBetween: 10,
   autoplay: {

@@ -217,8 +217,18 @@ const schema = object({
   phone: string().required(t("Required")),
   terms_and_privacy: string().required(t("Required")),
   cv:  mixed().required(t("Required"))
-     
+  
 });
+useHead({
+      title: `${t('find your career')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 
 let pending = ref(true);
 let isOpen = ref(false);

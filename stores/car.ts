@@ -28,6 +28,7 @@ import { carDetails , Cars } from "@/types/car";
                 }
             });
             if(result.status == 200){
+              
               this.CarDetails = result.data.cars[0];
               this.CarId = result.data.cars[0].id;
               this.ColorId = result.data.cars[0].colors[0].id;

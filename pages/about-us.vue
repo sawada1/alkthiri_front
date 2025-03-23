@@ -35,7 +35,7 @@
 import { useGeneralStore } from "@/stores/general";
 let store = useGeneralStore();
 const localePath = useLocalePath();
-const { locales, locale, setLocale } = useI18n();
+const { locales, locale, setLocale , t } = useI18n();
 let loadingAbout = ref(true);
 
 onMounted(()=>{
@@ -43,6 +43,17 @@ onMounted(()=>{
         loadingAbout.value = false;
     }, 1000)
 })
+
+useHead({
+      title: `${t('about us')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 
 </script>
 <style lang="">

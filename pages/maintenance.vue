@@ -461,6 +461,17 @@ async function onError(event: FormErrorEvent) {
   element?.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 let pendingBtn = ref(false);
+
+useHead({
+      title: `${t('book For Maintenance')}`,
+      meta: [
+        { name: 'description', content: 'test' },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: `${t('home')}` },
+        { property: 'og:description', content: 'test' },
+      ],
+    });
 onMounted(() => {
   getAppointment();
   brands.value = store.brandsWithModles;

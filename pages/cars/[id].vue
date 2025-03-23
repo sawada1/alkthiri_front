@@ -98,7 +98,7 @@
 import {useCarStore} from '@/stores/car';
 let store = useCarStore();
 const containerRef3 = ref(null);
-const {locale} = useI18n();
+const {locale , t} = useI18n();
 let checkCar = ref(0);
 
 
@@ -127,12 +127,29 @@ let route = useRoute();
 let car_id = route.query.car_id;
 let year = route.query.year;
 
+let title = computed(()=>{
+  return 
+})
 // watch(()=> locale.value , ()=>{
 //   store.fetchCarDetails(route.params.id , year);
 // })
+watch(()=> store.CarDetails , (val)=>{
+  useHead({
+      title: val?.name,
+      meta: [
+        { name: 'description', content: val?.description },
+        { name: 'keywords', content: 'test , test , test'},
+        { name: 'author', content: 'webstdy' },
+        { property: 'og:title', content: val?.name },
+        { property: 'og:description', content: val?.description },
+      ],
+    });
+})
 onMounted(() => {
 
   store.fetchCarDetails(route.params.id , year);
+
+ 
 });
 </script>
 <style lang=""></style>

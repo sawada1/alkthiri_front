@@ -7,16 +7,16 @@
         <div class="flex items-center justify-center xl:justify-start lg:justify-start">
           <NuxtImg
             src="/images/footer2.png"
-            class="xl:w-[272px] lg:w-[272px] xl:h-[78px] lg:h-[78px] w-[200px] h-[57px]"
+            class="xl:w-[272px] lg:w-[272px] xl:h-[78px] lg:h-[78px] w-[200px] h-[57px] object-cover"
             alt="logo"
             loading="lazy"
           ></NuxtImg>
         </div>
         <div class="flex items-center text-center xl:text-start lg:text-start justify-center flex-col">
           <div>
-            <h6 class="mb-3" style="color: hsla(0, 0%, 50%, 10.705)">
+            <span class="mb-5 block text-tw-grey">
               {{ $t("Important Links") }}
-            </h6>
+            </span>
             <div class="flex ite-center justify-center">
               <div class="links flex flex-col gap-3">
                 <nuxt-link :to="localePath('/')" class="text-white">
