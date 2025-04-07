@@ -163,6 +163,7 @@
   "PURCHASE ORDER": "PURCHASE ORDER",
   "individuals": "individuals",
   "corporate": "corporate",
+  "purchaseOrder": "PURCHASE ORDER",
   "payment method": "payment method",
   "finance": "finance",
   "cash": "cash",
@@ -232,6 +233,7 @@
   "maint2": "Guarantee",
   "maint3": "Plumbing And Painting",
   "other": "other",
+  "purchaseOrderFromOffer": "Purchase Order From Offer",
   "Or please fill the form below: You will receive a reply within a maximum of 24 hours.": "Or please fill the form below: You will receive a reply within a maximum of 24 hours.",
   "chooseModel":"choose model",
   "Invalidemail":"Invalid email"

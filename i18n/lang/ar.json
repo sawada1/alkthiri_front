@@ -235,12 +235,13 @@
 "Company age":"عمر الشركة",
 "choose city":"اختر المدينة",
 "Or please fill the form below: You will receive a reply within a maximum of 24 hours.":"أو يرجى ملء النموذج أدناه: ستتلقى ردًا في غضون 24 ساعة كحد أقصى.",
-
+"purchaseOrder":"طلب شراء",
 "maintHead":"تحديد نوع الصيانة",
 "maint1":"صيانة دورية",
 "maint2":"َضمان",
 "maint3":"سمكرة ودهان",
 "other":"اخري",
+"purchaseOrderFromOffer":"طلب شراء من عرض",
 "chooseModel":"اختر الموديل",
 "Invalidemail":"بريد إلكتروني غير صالح"
 }

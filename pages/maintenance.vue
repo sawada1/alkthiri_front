@@ -224,7 +224,7 @@
           </UButton>
         </UForm>
       </div>
-      <div class="flex flex-col gap-10">
+      <div class="flex flex-col gap-5 relative h-fit">
         <VueDatePicker
           inline
           ref="datepicker"
@@ -257,6 +257,7 @@
             </button>
           </div>
         </div>
+      <div v-if="checkTime" class="text-red-500  text-center z-[5555555] left-[25%] top-[50%] text-[20px]"> يجب عليك اختيار فرع اولا </div>
       </div>
     </div>
 
@@ -479,5 +480,7 @@ onMounted(() => {
 });
 </script>
 <style lang="scss">
-
+.dp__menu_disabled {
+  background: hsla(0, 0%, 100%, 0.7);
+  }
 </style>

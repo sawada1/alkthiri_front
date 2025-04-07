@@ -7,7 +7,7 @@
         <div class="flex items-center justify-center xl:justify-start lg:justify-start">
           <NuxtImg
             src="/images/footer2.png"
-            class="xl:w-[272px] lg:w-[272px] xl:h-[78px] lg:h-[78px] w-[200px] h-[57px] object-cover"
+            class="xl:w-[272px] lg:w-[272px] xl:h-[78px] lg:h-[78px] w-[200px] h-[57px] object-contain"
             alt="logo"
             loading="lazy"
           ></NuxtImg>
