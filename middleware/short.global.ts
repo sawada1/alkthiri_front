@@ -11,7 +11,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
     try {
       // TODO: Replace with your actual API call
       // const response = await $fetch(`/api/short/${key}`) 
-      const finalUrl = 'https://alkthiri.webstdy.com/?utm_source=tiktok&utm_medium=iti&utm_campaign=test'
+      const finalUrl = 'https://alkthiri-front.vercel.app/?utm_source=tiktok&utm_medium=iti&utm_campaign=test'
 
       const urlObj = new URL(finalUrl)
       const utmParams = ['utm_source', 'utm_medium', 'utm_campaign']

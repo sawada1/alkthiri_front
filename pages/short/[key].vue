@@ -16,7 +16,7 @@ onMounted(async () => {
   try {
     // Make the API call to get the final URL
     // const response = await $fetch(`/api/short/${key}`) // Replace with your API
-    const finalUrl = 'https://alkthiri.webstdy.com/brands?utm_source=tiktok&utm_medium=iti&utm_campaign=testtt' as string
+    const finalUrl = 'https://alkthiri-front.vercel.app/brands?utm_source=tiktok&utm_medium=iti&utm_campaign=testtt' as string
 
     // Extract and save UTM parameters
     const urlObj = new URL(finalUrl)
