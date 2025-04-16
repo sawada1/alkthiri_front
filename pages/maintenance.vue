@@ -429,6 +429,20 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     formData.append("email", state.value.email);
     formData.append("maintenance_type", state.value.maintenance_type);
     formData.append("model_id", state.value.model_id);
+    if(process.client) {
+    let utm_campaign = localStorage.getItem("utm_campaign") || null;
+    let utm_medium = localStorage.getItem("utm_medium") || null; 
+    let utm_source = localStorage.getItem("utm_source") || null;
+    if(utm_campaign) {
+      formData.append("utm_campaign", utm_campaign);
+    }
+    if(utm_medium) {
+      formData.append("utm_medium", utm_medium);
+    }
+    if(utm_source) {
+      formData.append("utm_source", utm_source);
+    }
+  }
     if (state.value.brand_id == "another") {
       formData.append("model_name", state.value.model_name);
     }

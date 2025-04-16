@@ -156,6 +156,20 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   formData.append("phone", state.phone);
   formData.append("city_id", String(state.city_id ?? ""));
   formData.append("terms_and_privacy", String(state.terms_and_privacy ?? ""));
+  if(process.client) {
+    let utm_campaign = localStorage.getItem("utm_campaign") || null;
+    let utm_medium = localStorage.getItem("utm_medium") || null; 
+    let utm_source = localStorage.getItem("utm_source") || null;
+    if(utm_campaign) {
+      formData.append("utm_campaign", utm_campaign);
+    }
+    if(utm_medium) {
+      formData.append("utm_medium", utm_medium);
+    }
+    if(utm_source) {
+      formData.append("utm_source", utm_source);
+    }
+  }
   for (var i = 0; i < state.services.length; i++) {
     formData.append("services[]", state.services[i]);
   }

@@ -282,33 +282,37 @@ const state = reactive({
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   form.value!.clear();
-
-  try {
-    pendingBtn.value = true;
-    const response = await useApi().post("contact-us", state);
-    if (response.status === 201 || response.status === 200) {
-      pendingBtn.value = false;
-      router.push(localePath("/thank-you"));
-      Object.assign(state, {
-        message: "",
-        email: "",
-        title: "",
-        name: "",
-        phone: "",
-        terms_and_privacy: undefined,
-      });
-    }
-  } catch (err: any) {
-    pendingBtn.value = false;
-    const errors = Object.entries(err.response.data.errors).map(
-      ([key, val]) => {
-        return {
-          path: key,
-          message: Array.isArray(val) ? val[0] : val,
-        };
+  if(process.client) {
+    let utm_campaign = localStorage.getItem("utm_campaign") || null;
+    let utm_medium = localStorage.getItem("utm_medium") || null; 
+    let utm_source = localStorage.getItem("utm_source") || null;
+    try {
+      pendingBtn.value = true;
+      const response = await useApi().post("contact-us", {...state , utm_campaign , utm_medium , utm_source});
+      if (response.status === 201 || response.status === 200) {
+        pendingBtn.value = false;
+        router.push(localePath("/thank-you"));
+        Object.assign(state, {
+          message: "",
+          email: "",
+          title: "",
+          name: "",
+          phone: "",
+          terms_and_privacy: undefined,
+        });
       }
-    );
-    form.value!.setErrors(errors);
+    } catch (err: any) {
+      pendingBtn.value = false;
+      const errors = Object.entries(err.response.data.errors).map(
+        ([key, val]) => {
+          return {
+            path: key,
+            message: Array.isArray(val) ? val[0] : val,
+          };
+        }
+      );
+      form.value!.setErrors(errors);
+    }
   }
 }
 const form = ref<Form<Schema>>();
