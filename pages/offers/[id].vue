@@ -149,12 +149,12 @@
                   class="w-full"
                   searchable
                   :searchable-placeholder="$t('search')"
-                  option-attribute="name_ar"
+                  option-attribute="name"
                   by="id"
-                  :search-attributes="['name_ar', 'id']"
+                  :search-attributes="['name', 'id']"
                 >
                   <template #option="{ option: person }">
-                    <span class="truncate">{{ person.name_ar }}</span>
+                    <span class="truncate">{{ person.name }}</span>
                   </template>
                 </USelectMenu>
               </div>
@@ -206,7 +206,7 @@
 <script lang="ts" setup>
 interface CarDetails {
   id: number;
-  name_ar: string;
+  name: string;
 }
 import { useOrderStore } from "@/stores/order";
 let store2 = useOrderStore();
