@@ -3,7 +3,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules:["@nuxtjs/i18n" , "@nuxt/ui"  , "@pinia/nuxt" , "@nuxt/image" , "nuxt-swiper" , "@nuxt/icon" , "@vee-validate/nuxt" , '@zadigetvoltaire/nuxt-gtm'],
+  // '@zadigetvoltaire/nuxt-gtm'
+  modules:["@nuxtjs/i18n" , "@nuxt/ui"  , "@pinia/nuxt" , "@nuxt/image" , "nuxt-swiper" , "@nuxt/icon" , "@vee-validate/nuxt" ],
   // tailwindcss: {
   //   configPath: 'tailwind.config.ts',
   // },
@@ -18,7 +19,7 @@ export default defineNuxtConfig({
   // vite: {
   //   cacheDir: false
   // },
-  plugins:["~/plugins/vue3-slider.client"],
+  plugins:["~/plugins/vue3-slider.client" , { src: '~/plugins/gtm.js', mode: 'client' }],
   nitro: {
     minify: true,
     routeRules: {
@@ -90,15 +91,15 @@ export default defineNuxtConfig({
       alwaysRedirect: false, // Disable to avoid redirecting every visit
     },
   },
-  gtm: {
-    id: 'GTM-NQN2K7PF', // ← your GTM ID here
-    enabled: true, // Set false if you want to disable in dev
-    debug: true, // Set to true for console logs in dev
-    scriptDefer: true,
-    pageTracking: true, // Enable automatic page view tracking
-    respectDoNotTrack: true,
-    layer: 'dataLayer',
-  },
+  // gtm: {
+  //   id: 'GTM-NQN2K7PF', // ← your GTM ID here
+  //   enabled: true, // Set false if you want to disable in dev
+  //   debug: true, // Set to true for console logs in dev
+  //   scriptDefer: true,
+  //   pageTracking: true, // Enable automatic page view tracking
+  //   respectDoNotTrack: true,
+  //   layer: 'dataLayer',
+  // },
   app:{
     head:{
       htmlAttrs: {
