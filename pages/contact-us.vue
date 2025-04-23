@@ -1,5 +1,5 @@
 <template>
-  <div class="container min-h-[140vh] mt-10 mb-[150px]">
+  <div class="container  mt-10 mb-[150px]">
     <h1
       class="headText font-bold contact mb-10 text-primary xl:text-[42px] lg:text-[42px] text-[32px]"
       :data-contact="$t('KEEP IN TOUCH')"
@@ -29,7 +29,7 @@
               </template>
 
               <span class="truncate text-lg font-bold"
-                >{{ index + 1 }} . {{ item.name }}</span
+                > {{ item.name }}</span
               >
 
               <template #trailing>
@@ -138,7 +138,7 @@
         </UAccordion>
       </div>
       <div class="relative h-full">
-        <div class="bg-white p-4 rounded-[16px] shadow-shadow1 sticky top-10">
+        <div class="bg-white p-4 rounded-[16px] shadow-shadow1 sticky top-[100px]">
           <UForm
             ref="form"
             :schema="schema"
