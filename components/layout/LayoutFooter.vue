@@ -82,7 +82,7 @@
         <div class="flex items-center justify-center">
           <div>
             <div class="flex flex-col items-center mb-4 gap-2">
-              <span class="text-white"> {{ $t("phone number") }} </span>
+              <span class="text-white"> {{ $t("Unifiednumber") }} </span>
               <a
                 class="text-white"
                 v-if="store.generalData?.phone"
@@ -172,7 +172,7 @@
             target="_blank"
             href="https://webstdy.com/ar?utm_source=alkathiri-foorter&utm_medium=referral"
           >
-            <NuxtImg src="/images/logo-footer.svg" loading="lazy" alt="webstdy" />
+            <NuxtImg src="/images/logo-footer.svg" width="60" height="60" loading="lazy" alt="webstdy" />
           </a>
         </p>
       </div>

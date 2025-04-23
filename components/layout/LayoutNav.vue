@@ -19,10 +19,7 @@
                         <nuxt-link :to="localePath('/offers')" class="nav-link relative text-tw-grey">
                             {{ $t("offers") }}</nuxt-link>
                     </div>
-                    <div class="nav-item">
-                        <nuxt-link :to="localePath('/contact-us')" class="nav-link relative text-tw-grey">
-                            {{ $t("contact us") }}</nuxt-link>
-                    </div>
+                
                     <div class="nav-item">
                         <nuxt-link :to="localePath('/about-us')" class="nav-link relative text-tw-grey">
                             {{ $t("about us") }}</nuxt-link>
@@ -41,6 +38,10 @@
                         <nuxt-link :to="localePath('/unavailable-car')" class="nav-link relative text-tw-grey">
                             {{ $t("unavailable car") }}
                         </nuxt-link>
+                    </div>
+                    <div class="nav-item">
+                        <nuxt-link :to="localePath('/contact-us')" class="nav-link relative text-tw-grey">
+                            {{ $t("ourBranches") }}</nuxt-link>
                     </div>
                 </div>
             </div>
@@ -98,7 +99,7 @@
                             {{ $t("offers") }}</nuxt-link>
                     </div>
                     <div class="nav-item">
-                        <nuxt-link :to="localePath('/contact-us')" class="nav-link relative text-tw-grey">
+                        <nuxt-link :to="localePath('/ourBranches')" class="nav-link relative text-tw-grey">
                             {{ $t("contact us") }}</nuxt-link>
                     </div>
                     <div class="nav-item">
@@ -132,7 +133,7 @@
            
                         </nuxt-link>
                     </div>
-                    <button id="searchLabelIcon2" aria-label="search">
+                    <button id="searchLabelIcon2" @click="clickSearch = !clickSearch" aria-label="search">
                     <SvgSearch></SvgSearch>
                     </button>
                 </div>
@@ -141,8 +142,9 @@
                 </nuxt-link>
             </div>
         <Placeholder class="h-full" />
-      <div class="w-full absolute top-[100%] rtl:left-[0px]">
-       <UInput></UInput>
+       
+      <div class="w-full absolute top-[100%] rtl:left-[0px] rtl:translate-x-[-300%] transition-all duration-300 ltr:translate-x-[300%]" :class="{'!translate-x-0':clickSearch}">
+        <UInput size="lg" icon="i-lucide-search" v-model="searchWord"  @keyup.enter="goToBrandPageByName"></UInput>
       </div>
       </div>
     </USlideover>
@@ -169,6 +171,7 @@ const goToBrandPageByName = () => {
     router.push({ path: `/${url}`, query: queryParams });
     searchWord.value = "";
     clickSearch.value = false;
+    isOpen.value = false;
   }
 };
 // const changeLang = async () => {

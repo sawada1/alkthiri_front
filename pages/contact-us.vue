@@ -283,12 +283,10 @@ const state = reactive({
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   form.value!.clear();
   if(process.client) {
-    let utm_campaign = localStorage.getItem("utm_campaign") || null;
-    let utm_medium = localStorage.getItem("utm_medium") || null; 
-    let utm_source = localStorage.getItem("utm_source") || null;
+
     try {
       pendingBtn.value = true;
-      const response = await useApi().post("contact-us", {...state , utm_campaign , utm_medium , utm_source});
+      const response = await useApi().post("contact-us", {...state});
       if (response.status === 201 || response.status === 200) {
         pendingBtn.value = false;
         router.push(localePath("/thank-you"));
@@ -369,7 +367,7 @@ onMounted(() => {
 });
 
 useHead({
-      title: `${t('CONTACT US NOW')}`,
+      title: `${t('ourBranches')}`,
       meta: [
         { name: 'description', content: 'test' },
         { name: 'keywords', content: 'test , test , test'},

@@ -4,7 +4,19 @@ import { onMounted } from 'vue'
 
 const route = useRoute()
 const router = useRouter()
+const cacheUtmParams = (params: string[], urlObj: URL) => {
+  const expiration = Date.now() + 4 * 24 * 60 * 60 * 1000 // 4 days in ms
+  const data: Record<string, string | number> = { expires: expiration }
 
+  params.forEach(param => {
+    const value = urlObj.searchParams.get(param)
+    if (value) {
+      data[param] = value
+    }
+  })
+
+  localStorage.setItem('utm_cache', JSON.stringify(data))
+}
 onMounted(async () => {
   const key = route.params.key as string
 
@@ -22,12 +34,7 @@ onMounted(async () => {
     const urlObj = new URL(finalUrl)
     const utmParams = ['utm_source', 'utm_medium', 'utm_campaign']
 
-    utmParams.forEach(param => {
-      const value = urlObj.searchParams.get(param)
-      if (value) {
-        localStorage.setItem(param, value)
-      }
-    })
+    cacheUtmParams(utmParams, urlObj);
 
     // Redirect to the final URL
     window.location.href = finalUrl
@@ -35,7 +42,9 @@ onMounted(async () => {
     console.error('Redirect failed:', err)
     router.replace('/')
   }
-})
+});
+
+
 </script>
 
 <template>

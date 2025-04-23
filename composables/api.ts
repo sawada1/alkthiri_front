@@ -1,6 +1,7 @@
 
 
 import { useRuntimeConfig , navigateTo } from "#app";
+import { getCachedUtmParams } from '~/utils/utm' // <-- add this import
 import axios from 'axios';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse , InternalAxiosRequestConfig  } from 'axios';
 export function useApi(){
@@ -12,7 +13,7 @@ export function useApi(){
       headers: {
         'Content-Type': 'application/json',
       },
-      timeout: 10000, // Set a timeout
+      // timeout: 10000, // Set a timeout
     });
     
     // Interceptors for request and response
@@ -49,13 +50,31 @@ export function useApi(){
         },
         post: async <T>(url: string, data: any, config: AxiosRequestConfig = {}): Promise<AxiosResponse<T>> => {
           const isFormData = data instanceof FormData;
+          const utm = getCachedUtmParams();
+        
+          if (utm && Object.keys(utm).length > 0) {
+            if (isFormData) {
+              // Append UTM params manually to FormData
+              Object.entries(utm).forEach(([key, value]) => {
+                data.append(key, value);
+              });
+            } else {
+              // Merge UTM params into JSON object
+              data = {
+                ...data,
+                ...utm,
+              };
+            }
+          }
+        
           const response = await apiClient.post<T>(url, data, {
             ...config,
             headers: {
               'Content-Type': isFormData ? 'multipart/form-data' : 'application/json',
-              ...config.headers, // ✅ Now this will always be defined
+              ...config.headers,
             },
           });
+        
           return response;
         },
         put: async <T>(url: string, data: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> => {

@@ -77,20 +77,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   formData.append("salary_identification",store.stateIndFinance.salary_identification);
   formData.append("insurance_print", store.stateIndFinance.insurance_print);
   formData.append("account_statement", store.stateIndFinance.account_statement);
-  if(process.client) {
-    let utm_campaign = localStorage.getItem("utm_campaign") || null;
-    let utm_medium = localStorage.getItem("utm_medium") || null; 
-    let utm_source = localStorage.getItem("utm_source") || null;
-    if(utm_campaign) {
-      formData.append("utm_campaign", utm_campaign);
-    }
-    if(utm_medium) {
-      formData.append("utm_medium", utm_medium);
-    }
-    if(utm_source) {
-      formData.append("utm_source", utm_source);
-    }
-  }
+
   formData.append(
     "funding_organization_type",
     store.stateIndFinance.funding_organization_type
