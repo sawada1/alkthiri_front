@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules:["@nuxtjs/i18n" , "@nuxt/ui"  , "@pinia/nuxt" , "@nuxt/image" , "nuxt-swiper" , "@nuxt/icon" , "@vee-validate/nuxt" , '@nuxtjs/gtm'],
+  modules:["@nuxtjs/i18n" , "@nuxt/ui"  , "@pinia/nuxt" , "@nuxt/image" , "nuxt-swiper" , "@nuxt/icon" , "@vee-validate/nuxt" , '@zadigetvoltaire/nuxt-gtm'],
   // tailwindcss: {
   //   configPath: 'tailwind.config.ts',
   // },

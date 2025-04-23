@@ -30,6 +30,7 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
+    "@zadigetvoltaire/nuxt-gtm": "^0.0.13",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.3",
     "sass-embedded": "^1.85.0",
