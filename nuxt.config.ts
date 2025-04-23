@@ -96,7 +96,7 @@ export default defineNuxtConfig({
     debug: true, // Set to true for console logs in dev
     scriptDefer: true,
     pageTracking: true, // Enable automatic page view tracking
-    respectDoNotTrack: false,
+    respectDoNotTrack: true,
     layer: 'dataLayer',
   },
   app:{
