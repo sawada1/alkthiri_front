@@ -91,7 +91,13 @@ export default defineNuxtConfig({
     },
   },
   gtm: {
-    id: 'GTM-NQN2K7PF', // Used as fallback if no runtime config is provided
+    id: 'GTM-NQN2K7PF', // ← your GTM ID here
+    enabled: true, // Set false if you want to disable in dev
+    debug: true, // Set to true for console logs in dev
+    scriptDefer: true,
+    pageTracking: true, // Enable automatic page view tracking
+    respectDoNotTrack: false,
+    layer: 'dataLayer',
   },
   app:{
     head:{
