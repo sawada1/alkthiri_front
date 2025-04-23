@@ -4,7 +4,7 @@
                 :src="carImage"
                 placeholder="/images/placeholder.png"
                 class="w-full xl:h-[200px] lg:h-[200px] h-[150px] object-contain"
-                :alt="car.name"
+                :alt="`car-${car.name}`"
                 loading="lazy"
               ></NuxtImg>
               <span class="xl:text-[16px] lg:text-[16px] text-[14px] line-clamp-2 text-center text-primary font-semibold">
@@ -26,25 +26,6 @@ let props = defineProps({
 });
 
 const carImage = computed(() => props.car?.main_image || props.car?.model_image || "/images/placeholder.png");
-
-
-const goToCarPage = (id, model_id) => {
-  const queryParams = {
-    model_id: model_id,
-    // name: name,
-  }
-  let url = `/cars/${id}`
-  
-  const updatedRoute = {
-    path: url,
-    query: {
-      ...queryParams,
-    },
-  };
-
-  const fullLocalePath = localePath(updatedRoute);
-  router.push(fullLocalePath);
-}
 </script>
 <style lang="">
     

@@ -1,8 +1,9 @@
 <template>
   <div
-    class="bg-primary relative py-[30px] bg-[url('/images/footer-back.png')] bg-center bg-no-repeat bg-cover"
+    class=" relative py-[30px]  bg-center bg-no-repeat bg-cover"
   >
-    <div class="container">
+  <NuxtImg src="/images/footer-back.png" loading="lazy" alt="footer-img" class="absolute top-0 right-0 left-0 w-full h-full object-cover z-[-1]"></NuxtImg>
+    <div class="container ">
       <div class="grid gap-10 grid-cols-1 xl:grid-cols-4 lg:grid-cols-4">
         <div class="flex items-center justify-center xl:justify-start lg:justify-start">
           <NuxtImg

@@ -11,17 +11,17 @@
         <swiper-slide
         v-for="item in storeHome.newsArray"
         class="bg-white shadow-shadow1 p-[12px] rounded-[16px]">
-        <NuxtImg :src="item.main_image" :alt="item.title" placeholder="/images/placeholder.png" class="xl:h-[302px] lg:h-[302px] h-[200px] object-contain w-full rounded-[8px]"></NuxtImg>
+        <NuxtImg :src="item.main_image" :alt="item.title" loading="lazy" placeholder="/images/placeholder.png" class="xl:h-[302px] lg:h-[302px] h-[200px] object-contain w-full rounded-[8px]"></NuxtImg>
         <h5 class="text-primary font-bold text-[25px] my-2"> {{ item.title }} </h5>
         <p class="text-[#6F6F6E] line-clamp-3 text-[14px]" v-html="item.description"></p>
         <div class="flex items-center justify-between px-2 mt-2">
          <div class="flex items-center gap-2">
           <div class="flex items-center gap-1">
-           <NuxtImg src="/images/icons/tag.svg" alt="tag" class="w-3 h-3"></NuxtImg>
+           <NuxtImg src="/images/icons/tag.svg" alt="tag" loading="lazy" class="w-3 h-3"></NuxtImg>
            <span class="text-[#C0C0C0] text-[10px]"> {{ item.tags }} </span>
           </div>
           <div class="flex items-center gap-1">
-           <NuxtImg src="/images/icons/time.svg" alt="time" class="w-3 h-3"></NuxtImg>
+           <NuxtImg src="/images/icons/time.svg" alt="time" loading="lazy" class="w-3 h-3"></NuxtImg>
            <span class="text-[#C0C0C0] text-[10px]"> {{ item.created_at }} </span>
           </div>
          </div>
