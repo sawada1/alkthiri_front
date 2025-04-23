@@ -48,7 +48,7 @@ export default defineNuxtConfig({
     preference: 'light'
   },
   image: {
-    provider: "ipx",
+    provider: "none",
     format: ['webp'],
     screens: {
       'xs': 320,
