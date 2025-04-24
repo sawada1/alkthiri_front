@@ -19,7 +19,8 @@ export default defineNuxtConfig({
   // vite: {
   //   cacheDir: false
   // },
-  plugins:["~/plugins/vue3-slider.client" , { src: '~/plugins/gtm.js', mode: 'client' }],
+  // { src: '~/plugins/gtm.js', mode: 'client' }
+  plugins:["~/plugins/vue3-slider.client" ],
   nitro: {
     minify: true,
     routeRules: {
