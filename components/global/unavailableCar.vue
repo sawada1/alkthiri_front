@@ -149,6 +149,10 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     const response = await useApi().post("unavailable-car", state);
     if (response.status === 201 || response.status === 200) {
       pendingBtn.value = false;
+      if(process.client) {
+        localStorage.setItem("formSubmitted", "true");
+        
+      }
       router.push(localePath("/thank-you"));
       Object.assign(state, {
         name: "",
@@ -157,6 +161,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         phone: "",
         terms_and_privacy: undefined,
       });
+      
     }
   } catch (err: any) {
     pendingBtn.value = false;

@@ -12,7 +12,22 @@
 </template>
 <script setup>
 const { t, locale } = useI18n();
+const localePath = useLocalePath()
+const router = useRouter()
 
+if (process.client) { 
+  const formSubmitted = localStorage.getItem('formSubmitted')
+
+  if (!formSubmitted) {
+    router.replace(localePath('/')) 
+  } else {
+    localStorage.removeItem('formSubmitted')
+  }
+}
+onMounted(() => {
+    localStorage.removeItem('formSubmitted')
+    
+});
 useHead({
       title: `${t('thank page')}`,
       meta: [

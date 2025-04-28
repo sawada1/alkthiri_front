@@ -289,6 +289,10 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       const response = await useApi().post("contact-us", {...state});
       if (response.status === 201 || response.status === 200) {
         pendingBtn.value = false;
+        localStorage.setItem("formSubmitted", "true");
+        if(process.client) {
+        
+      }
         router.push(localePath("/thank-you"));
         Object.assign(state, {
           message: "",

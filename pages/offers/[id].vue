@@ -317,6 +317,10 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     );
     if (response.status === 201 || response.status === 200) {
       pendingBtn.value = false;
+      if(process.client) {
+        localStorage.setItem("formSubmitted", "true");
+        
+      }
       router.push(localePath("/thank-you"));
      
     }

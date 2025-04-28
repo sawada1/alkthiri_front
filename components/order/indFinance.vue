@@ -100,6 +100,10 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     const response = await useApi().post("individuals-orders", formData);
     if (response.status === 201 || response.status === 200) {
       pendingBtn.value = false;
+      if(process.client) {
+        localStorage.setItem("formSubmitted", "true");
+        
+      }
       router.push(localePath("/thank-you"));
     }
   } catch (err: any) {
