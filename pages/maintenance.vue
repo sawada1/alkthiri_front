@@ -63,7 +63,6 @@
                   <span class="truncate">{{ person.name }}</span>
                 </template>
               </USelectMenu>
-          
             </div>
           </UFormGroup>
           <UFormGroup name="model_id">
@@ -152,7 +151,7 @@
                     <USelectMenu
                       v-model="branch"
                       :options="branches"
-                      @update:model-value="getTimeSlots"
+                      @update:model-value="getDataTimeSlots"
                       :placeholder="$t('Select branch...')"
                       class="w-full"
                       searchable
@@ -197,7 +196,7 @@
               <label for="checkInp">
                 {{ $t("I have read and unconditionally agree to the") }}
                 <span
-                   @click.stop="isOpen = !isOpen"
+                  @click.stop="isOpen = !isOpen"
                   class="text-primary underline cursor-pointer"
                 >
                   {{ $t("Term And Conditions") }}
@@ -205,7 +204,7 @@
 
                 {{ $t("and") }}
                 <span
-                @click.stop="isOpen2 = !isOpen2"
+                  @click.stop="isOpen2 = !isOpen2"
                   class="text-primary underline cursor-pointer"
                 >
                   {{ $t("Privacy Policy") }}
@@ -213,7 +212,6 @@
               </label>
             </div>
           </UFormGroup>
-
 
           <UButton
             :disabled="pendingBtn"
@@ -225,11 +223,14 @@
         </UForm>
       </div>
       <div class="flex flex-col gap-5 relative h-fit">
+        <!-- :disabled-dates="customDisabledDates" -->
+
         <VueDatePicker
           inline
           ref="datepicker"
           v-model="selectedDate"
           :disabled="checkTime"
+          :disabled-dates="customDisabledDates"
           :min-date="min"
           :max-date="max"
           prevent-min-max-navigation
@@ -248,21 +249,30 @@
           </h5>
           <div class="flex flex-wrap items-center gap-5">
             <button
-            v-for="i in timeSlots"
-            @click="state.time = i?.value"
-            :class="{'!bg-primary !text-white':state.time == i?.value }"
+              v-for="i in timeSlots"
+              @click="state.time = i?.value"
+              :class="{ '!bg-primary !text-white': state.time == i?.value }"
               class="border border-primary text-primary px-8 py-2 rounded-[30px]"
             >
               {{ i?.time }}
             </button>
           </div>
         </div>
-      <div v-if="checkTime" class="text-red-500  text-center z-[5555555] left-[25%] top-[50%] text-[20px]"> يجب عليك اختيار فرع اولا </div>
+        <!-- {{ checkTimeSlot }} -- ({{ checkTimeBoolean }}) -->
+        <div v-if="checkTimeSlot" class="text-red-500 text-center text-xl">
+          يجب عليك اختيار توقيت
+        </div>
+        <div
+          v-if="checkTime"
+          class="text-red-500 text-center z-[5555555] left-[25%] top-[50%] text-[20px]"
+        >
+          يجب عليك اختيار فرع اولا
+        </div>
       </div>
     </div>
 
-   <Terms :isOpen="isOpen"></Terms>
-   <Policy :isOpen="isOpen2"></Policy>
+    <Terms :isOpen="isOpen"></Terms>
+    <Policy :isOpen="isOpen2"></Policy>
   </div>
 </template>
 <script setup lang="ts">
@@ -281,26 +291,35 @@ const { datAfter14Days, dayNamesAR, dayNamesEN, differenceInDays } =
 const localePath = useLocalePath();
 let min = ref("");
 let max = ref("");
+const disabledDates = ref<Date[]>([]);
+let daysDisabled = ref([
+  "2025-05-26",
+  "2025-05-27",
+  "2025-05-28",
+  "2025-05-29",
+  "2025-05-30",
+]);
+let customDisabledDates = ref<Date[]>([]);
 const cities = ref([]);
-const isOpen = ref(false)
-const isOpen2 = ref(false)
+const isOpen = ref(false);
+const isOpen2 = ref(false);
 let maintenance_types = ref([
-{
-  value:"Periodic Maintenance",
-  name: t('maint1')
-},
-{
-  value:"Guarantee",
-  name: t('maint2')
-},
-{
-  value:"Plumbing And Painting",
-  name: t('maint3')
-},
-{
-  value:"Other",
-  name: t('other')
-},
+  {
+    value: "Periodic Maintenance",
+    name: t("maint1"),
+  },
+  {
+    value: "Guarantee",
+    name: t("maint2"),
+  },
+  {
+    value: "Plumbing And Painting",
+    name: t("maint3"),
+  },
+  {
+    value: "Other",
+    name: t("other"),
+  },
 ]);
 let city = ref();
 const branches = ref([]);
@@ -315,6 +334,7 @@ const schema = object({
   phone: string().required(t("Required")),
   branch_id: string().required(t("Required")),
   brand_id: string().required(t("Required")),
+  time: string().required(t("Required")),
   city_id: string().required(t("Required")),
   model_id: string().required(t("Required")),
   model_year: string().required(t("Required")),
@@ -322,10 +342,11 @@ const schema = object({
   maintenance_type: string().required(t("Required")),
 });
 
-
 const checkTime = ref(true);
 const timeSlots = ref<any[]>([]);
 const brands_models = ref<Models[]>([]);
+const checkTimeSlot = ref(false);
+const checkTimeBoolean = ref(true);
 const fetchModels = (selected: { id: number }) => {
   let filter = store.brandsWithModles.find((ele) => ele.id === selected.id);
   brands_models.value = filter?.parent_models ?? [];
@@ -357,6 +378,18 @@ const state = ref({
   maintenance_type: "",
 });
 
+watch(
+  [() => state.value.time, () => checkTimeBoolean.value],
+  ([val, val2]) => {
+    if (val === "" && val2 === false) {
+      checkTimeSlot.value = true;
+    } else {
+      checkTimeSlot.value = false;
+    }
+  },
+  { immediate: true }
+);
+
 let brands = ref<Brands[]>([]);
 watch(
   () => brand.value,
@@ -366,20 +399,28 @@ watch(
     }
   }
 );
-watch([() => city.value, () => branch.value , ()=> model.value , ()=> maintenance_type.value], ([val, val2 , val3 , val4]) => {
-  if (val) {
-    state.value.city_id = val?.id;
+watch(
+  [
+    () => city.value,
+    () => branch.value,
+    () => model.value,
+    () => maintenance_type.value,
+  ],
+  ([val, val2, val3, val4]) => {
+    if (val) {
+      state.value.city_id = val?.id;
+    }
+    if (val2) {
+      state.value.branch_id = val2?.id;
+    }
+    if (val3) {
+      state.value.model_id = val3?.id;
+    }
+    if (val4) {
+      state.value.maintenance_type = val4?.value;
+    }
   }
-  if (val2) {
-    state.value.branch_id = val2?.id;
-  }
-  if(val3){
-    state.value.model_id = val3?.id;
-  }
-  if(val4){
-    state.value.maintenance_type = val4?.value 
-  }
-});
+);
 watch(
   () => store.brandsWithModles,
   (val) => {
@@ -398,21 +439,50 @@ const getAppointment = async () => {
     cities.value = response.data?.cities;
   }
 };
+
+const getDisabledDates = async () => {
+  const response = await useApi().get<string[]>("unavailable-dates", {
+    params: {
+      branch_id: branch.value?.id,
+    },
+  });
+  if (response.status === 200) {
+    disabledDates.value = response.data?.unavailable_dates.map(
+      (date: string) => new Date(date)
+    );
+    customDisabledDates.value = disabledDates.value.map((date) => {
+      return new Date(date);
+    });
+  }
+};
+
 const getTimeSlots = async () => {
   checkTime.value = false;
   state.value.date = format(selectedDate.value, "yyyy-MM-dd");
   let response = await useApi().get<any[]>(`time-slots`, {
     params: {
-      date: format(selectedDate.value, "yyyy-MM-dd") ,
+      date: format(selectedDate.value, "yyyy-MM-dd"),
       branch_id: branch.value?.id,
     },
   });
-if(response.status === 200){
-  timeSlots.value = response.data;
-  if(timeSlots.value.length >= 1){
-    state.value.time = timeSlots.value[0]?.value
+  if (response.status === 200) {
+    timeSlots.value = response.data;
+    checkTimeBoolean.value = false;
+    if (timeSlots.value.length === 0) {
+      console.log("no time slots available");
+      checkTimeBoolean.value = false;
+      console.log(checkTimeBoolean.value);
+    }
+    if (timeSlots.value.length >= 1) {
+      state.value.time = timeSlots.value[0]?.value;
+    }
   }
-}
+};
+
+const getDataTimeSlots = () => {
+  getTimeSlots();
+  getDisabledDates();
+  state.value.time = "";
 };
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   form.value!.clear();
@@ -440,9 +510,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     const response = await useApi().post("make-appointment", formData);
     if (response.status === 200) {
       pendingBtn.value = false;
-      if(process.client) {
+      if (process.client) {
         localStorage.setItem("formSubmitted", "true");
-        
       }
       router.push(localePath("/thank-you"));
     }
@@ -469,15 +538,15 @@ async function onError(event: FormErrorEvent) {
 let pendingBtn = ref(false);
 
 useHead({
-      title: `${t('book For Maintenance')}`,
-      meta: [
-        { name: 'description', content: 'test' },
-        { name: 'keywords', content: 'test , test , test'},
-        { name: 'author', content: 'webstdy' },
-        { property: 'og:title', content: `${t('home')}` },
-        { property: 'og:description', content: 'test' },
-      ],
-    });
+  title: `${t("book For Maintenance")}`,
+  meta: [
+    { name: "description", content: "test" },
+    { name: "keywords", content: "test , test , test" },
+    { name: "author", content: "webstdy" },
+    { property: "og:title", content: `${t("home")}` },
+    { property: "og:description", content: "test" },
+  ],
+});
 onMounted(() => {
   getAppointment();
   brands.value = store.brandsWithModles;
@@ -487,5 +556,5 @@ onMounted(() => {
 <style lang="scss">
 .dp__menu_disabled {
   background: hsla(0, 0%, 100%, 0.7);
-  }
+}
 </style>
